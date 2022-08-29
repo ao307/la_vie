@@ -1,0 +1,87 @@
+{
+  "id": 2902,
+  "first_name": "ali",
+  "last_name": "doctor",
+  "national_id": 123468064534,
+  "email": "alidoc@gm.com",
+  "phone_number": "04292551118",
+  "gender": true,
+  "birth_date": "2022-07-30",
+  "blood_type": "A+",
+  "marital_status": "single",
+  "image": {
+    "file_name": "c.jpg",
+    "file_url": "https://gradproject-hmis-app.herokuapp.com/api/v1/departments/4/download-image/c.jpg"
+  },
+  "is_active": true,
+  "created_at": "2022-06-26T17:20:53.88033547",
+  "salary": 250.4312,
+  "department": {
+    "id": 4,
+    "name": "Chest",
+    "image": {
+      "file_name": "c.jpg",
+      "file_url": "https://gradproject-hmis-app.herokuapp.com/api/v1/departments/4/download-image/c.jpg"
+    },
+    "description": "This is Chest description",
+    "location": "the department localtion in the hospital",
+    "clinic": {
+      "id": 105,
+      "name": "Chest",
+      "code": "CH24",
+      "location": "chest clinic localtion",
+      "start_day": "MON",
+      "end_day": "THU",
+      "work_days": 4
+    }
+  },
+  "is_admin": false,
+  "shifts": [
+    {
+      "id": 552,
+      "from_time": "5:00 PM",
+      "to_time": "10:00 PM",
+      "day": "FRIDAY"
+    },
+    {
+      "id": 553,
+      "from_time": "9:00 AM",
+      "to_time": "2:00 PM",
+      "day": "TUESDAY"
+    },
+    {
+      "id": 554,
+      "from_time": "9:00 AM",
+      "to_time": "4:00 PM",
+      "day": "SUNDAY"
+    }
+  ],
+  "role": "consultant",
+  "available": true,
+  "description": "sad",
+  "max_patient_number": 10,
+  "appointment_price": 150.0,
+  "staff_type": "DoctorType",
+  "full_name": "ali doctor",
+  "age": 21,
+  "_links": {
+    "self": {
+      "href": "https://gradproject-hmis-app.herokuapp.com/api/v1/doctors/2902"
+    },
+    "doctors": {
+      "href": "https://gradproject-hmis-app.herokuapp.com/api/v1/doctors"
+    },
+    "appointments": {
+      "href": "https://gradproject-hmis-app.herokuapp.com/api/v1/doctors/2902/appointments"
+    },
+    "available-dates": {
+      "href": "https://gradproject-hmis-app.herokuapp.com/api/v1/doctors/2902/available-dates/"
+    },
+    "total-income": {
+      "href": "https://gradproject-hmis-app.herokuapp.com/api/v1/doctors/2902/total-income"
+    },
+    "upcoming-appointments": {
+      "href": "https://gradproject-hmis-app.herokuapp.com/api/v1/doctors/2902/upcoming-appointments"
+    }
+  }
+}
