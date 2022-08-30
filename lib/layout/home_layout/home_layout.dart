@@ -20,7 +20,7 @@ class HomeLayout extends StatelessWidget {
       listener: (context, state) {},
       builder: (BuildContext context, Object? state) {
         return Scaffold(
-          resizeToAvoidBottomInset: false,
+          extendBody: true,
           body: PageView(
             physics: const NeverScrollableScrollPhysics(),
             controller: controllerPage,
@@ -35,6 +35,7 @@ class HomeLayout extends StatelessWidget {
             ],
             activeIndex: cubit(context).currentIndex,
             gapLocation: GapLocation.center,
+            backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
             notchSmoothness: NotchSmoothness.verySmoothEdge,
             activeColor: MyColors.cPrimary,
             onTap: (index) {
