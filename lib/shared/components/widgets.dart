@@ -105,28 +105,24 @@ class MyDivider extends StatelessWidget {
     );
   }
 }
+
 class SideNotification extends StatelessWidget {
   const SideNotification({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return                                 Padding(
-      padding:
-      const EdgeInsets.symmetric(vertical: 2),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Container(
         width: 4,
         decoration: BoxDecoration(
-          color: MyColors.cTextSubtitleLight
-              .withOpacity(.4),
+          color: MyColors.cTextSubtitleLight.withOpacity(.4),
           borderRadius: const BorderRadius.vertical(
-            top:
-            Radius.circular(borderRadiusMedium),
-            bottom:
-            Radius.circular(borderRadiusMedium),
+            top: Radius.circular(borderRadiusMedium),
+            bottom: Radius.circular(borderRadiusMedium),
           ),
         ),
       ),
     );
   }
 }
-

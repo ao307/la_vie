@@ -1,15 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:la_vie/modules/auth_screens/auth_screen.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/cubit.dart';
 import 'package:la_vie/shared/cubit/states.dart';
 import 'package:la_vie/shared/themes/colors.dart';
-import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 import '../../modules/home_screen/home_screen.dart';
 

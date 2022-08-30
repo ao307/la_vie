@@ -8,7 +8,6 @@ import 'package:la_vie/modules/auth_screens/body/signup_body.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
-import 'package:la_vie/shared/cubit/states.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
 import '../../layout/home_layout/home_layout.dart';

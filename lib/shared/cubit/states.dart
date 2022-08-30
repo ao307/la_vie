@@ -7,5 +7,3 @@ class AppChangeBottomNavBarState extends AppStates {}
 class AppChangeThemeState extends AppStates {}
 
 class AppAnyState extends AppStates {}
-
-

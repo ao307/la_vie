@@ -68,7 +68,7 @@ class NotificationScreen extends StatelessWidget {
                                     '" asdas sadasd asda sdas das das das dasdas sadasd asda sdas das das das dasdas sadasd asda sdas das das das dasdas sadasd asda sdas das das das dasdas sadasd asda sdas das das das d"'
                                         .toCapitalized(),
                                     style: const TextStyle(
-                                        fontWeight: FontWeight.w600),
+                                        fontWeight: FontWeight.w600,),
                                   ),
                                 )
                               ],

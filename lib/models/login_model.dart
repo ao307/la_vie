@@ -4,31 +4,40 @@
 
 class LoginModel {
   LoginModel({
-      String? type, 
-      String? message, 
-      Data? data,}){
+    String? type,
+    String? message,
+    Data? data,
+  }) {
     _type = type;
     _message = message;
     _data = data;
-}
+  }
 
   LoginModel.fromJson(dynamic json) {
     _type = json['type'];
     _message = json['message'];
     _data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
+
   String? _type;
   String? _message;
   Data? _data;
-LoginModel copyWith({  String? type,
-  String? message,
-  Data? data,
-}) => LoginModel(  type: type ?? _type,
-  message: message ?? _message,
-  data: data ?? _data,
-);
+
+  LoginModel copyWith({
+    String? type,
+    String? message,
+    Data? data,
+  }) =>
+      LoginModel(
+        type: type ?? _type,
+        message: message ?? _message,
+        data: data ?? _data,
+      );
+
   String? get type => _type;
+
   String? get message => _message;
+
   Data? get data => _data;
 
   Map<String, dynamic> toJson() {
@@ -40,7 +49,6 @@ LoginModel copyWith({  String? type,
     }
     return map;
   }
-
 }
 
 /// user : {"userId":"5f413376-c395-400f-8922-f84c3286636c","firstName":"ali","lastName":"ashraf","email":"aliAsh@gmail.com","imageUrl":"https://res.cloudinary.com/lms07/image/upload/v1645954589/avatar/6214b94ad832b0549b436264_avatar1645954588291.png","role":"user"}
@@ -49,31 +57,40 @@ LoginModel copyWith({  String? type,
 
 class Data {
   Data({
-      User? user, 
-      String? accessToken, 
-      String? refreshToken,}){
+    User? user,
+    String? accessToken,
+    String? refreshToken,
+  }) {
     _user = user;
     _accessToken = accessToken;
     _refreshToken = refreshToken;
-}
+  }
 
   Data.fromJson(dynamic json) {
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
     _accessToken = json['accessToken'];
     _refreshToken = json['refreshToken'];
   }
+
   User? _user;
   String? _accessToken;
   String? _refreshToken;
-Data copyWith({  User? user,
-  String? accessToken,
-  String? refreshToken,
-}) => Data(  user: user ?? _user,
-  accessToken: accessToken ?? _accessToken,
-  refreshToken: refreshToken ?? _refreshToken,
-);
+
+  Data copyWith({
+    User? user,
+    String? accessToken,
+    String? refreshToken,
+  }) =>
+      Data(
+        user: user ?? _user,
+        accessToken: accessToken ?? _accessToken,
+        refreshToken: refreshToken ?? _refreshToken,
+      );
+
   User? get user => _user;
+
   String? get accessToken => _accessToken;
+
   String? get refreshToken => _refreshToken;
 
   Map<String, dynamic> toJson() {
@@ -85,7 +102,6 @@ Data copyWith({  User? user,
     map['refreshToken'] = _refreshToken;
     return map;
   }
-
 }
 
 /// userId : "5f413376-c395-400f-8922-f84c3286636c"
@@ -97,19 +113,20 @@ Data copyWith({  User? user,
 
 class User {
   User({
-      String? userId, 
-      String? firstName, 
-      String? lastName, 
-      String? email, 
-      String? imageUrl, 
-      String? role,}){
+    String? userId,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? imageUrl,
+    String? role,
+  }) {
     _userId = userId;
     _firstName = firstName;
     _lastName = lastName;
     _email = email;
     _imageUrl = imageUrl;
     _role = role;
-}
+  }
 
   User.fromJson(dynamic json) {
     _userId = json['userId'];
@@ -119,30 +136,41 @@ class User {
     _imageUrl = json['imageUrl'];
     _role = json['role'];
   }
+
   String? _userId;
   String? _firstName;
   String? _lastName;
   String? _email;
   String? _imageUrl;
   String? _role;
-User copyWith({  String? userId,
-  String? firstName,
-  String? lastName,
-  String? email,
-  String? imageUrl,
-  String? role,
-}) => User(  userId: userId ?? _userId,
-  firstName: firstName ?? _firstName,
-  lastName: lastName ?? _lastName,
-  email: email ?? _email,
-  imageUrl: imageUrl ?? _imageUrl,
-  role: role ?? _role,
-);
+
+  User copyWith({
+    String? userId,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? imageUrl,
+    String? role,
+  }) =>
+      User(
+        userId: userId ?? _userId,
+        firstName: firstName ?? _firstName,
+        lastName: lastName ?? _lastName,
+        email: email ?? _email,
+        imageUrl: imageUrl ?? _imageUrl,
+        role: role ?? _role,
+      );
+
   String? get userId => _userId;
+
   String? get firstName => _firstName;
+
   String? get lastName => _lastName;
+
   String? get email => _email;
+
   String? get imageUrl => _imageUrl;
+
   String? get role => _role;
 
   Map<String, dynamic> toJson() {
@@ -155,5 +183,4 @@ User copyWith({  String? userId,
     map['role'] = _role;
     return map;
   }
-
 }

@@ -102,6 +102,7 @@ String? validatePassword(
   } else if (!regex.hasMatch(value)) {
     return 'password should be 8 digit contains at least one capital and lower character'.tr().toCapitalized();
   }
+  return null;
 }
 
 void showAlertDialog({
