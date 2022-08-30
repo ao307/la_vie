@@ -2,11 +2,14 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:la_vie/modules/home_screen/home_screen.dart';
+import 'package:la_vie/modules/leaf_screen/leaf_screen.dart';
 import 'package:la_vie/modules/profile_screen/profile_screen.dart';
 import 'package:la_vie/shared/api/local/app_box.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/cubit/states.dart';
+
+import '../../modules/notification_screen/notification_screen.dart';
+import '../../modules/scan_screen/scan_screen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -15,15 +18,9 @@ class AppCubit extends Cubit<AppStates> {
 
 
   List<Widget> screens = [
-    const Center(
-      child: Text('main3'),
-    ),
-    const Center(
-      child: Text('main2'),
-    ),
-    const Center(
-      child: Text('main3'),
-    ),
+    const LeafScreen(),
+    const ScanScreen(),
+    const NotificationScreen(),
     const ProfileScreen(),
   ];
   static bool isDark = false;
@@ -41,8 +38,4 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeBottomNavBarState());
   }
 
-  Future<void> logout() async {
-    currentIndex = 0;
-    emit(AppAnyState());
-  }
 }

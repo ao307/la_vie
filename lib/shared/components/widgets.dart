@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:la_vie/shared/components/constants.dart';
+
+import '../themes/colors.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -87,3 +90,43 @@ class CircleAvatarWithTransition extends StatelessWidget {
     );
   }
 }
+
+class MyDivider extends StatelessWidget {
+  const MyDivider({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: paddingLarge),
+      child: Container(
+        height: 1,
+        color: MyColors.cTextSubtitleLight.withOpacity(0.5),
+      ),
+    );
+  }
+}
+class SideNotification extends StatelessWidget {
+  const SideNotification({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return                                 Padding(
+      padding:
+      const EdgeInsets.symmetric(vertical: 2),
+      child: Container(
+        width: 4,
+        decoration: BoxDecoration(
+          color: MyColors.cTextSubtitleLight
+              .withOpacity(.4),
+          borderRadius: const BorderRadius.vertical(
+            top:
+            Radius.circular(borderRadiusMedium),
+            bottom:
+            Radius.circular(borderRadiusMedium),
+          ),
+        ),
+      ),
+    );
+  }
+}
+

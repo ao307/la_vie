@@ -8,6 +8,7 @@ import 'package:la_vie/modules/auth_screens/auth_widgets/auth_text_form_field.da
 import 'package:la_vie/modules/auth_screens/auth_widgets/ritch_text_button_.dart';
 import 'package:la_vie/modules/auth_screens/auth_widgets/social_auth_button.dart';
 import 'package:la_vie/shared/components/constants.dart';
+import 'package:la_vie/shared/components/google_auth.dart';
 import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/themes/colors.dart';
@@ -120,7 +121,9 @@ class LoginBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        GoogleSignInApi.login();
+                      },
                       icon: Image.asset(
                         ImagesInAssets.googleImage,
                         width: 30,

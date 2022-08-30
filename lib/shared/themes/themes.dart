@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
+import '../components/constants.dart';
+
 ThemeData lightTheme() => ThemeData(
       useMaterial3: true,
       iconTheme: const IconThemeData(color: MyColors.cIconLight),
@@ -11,8 +13,8 @@ ThemeData lightTheme() => ThemeData(
         titleTextStyle: TextStyle(
           color: MyColors.cAppBarTextLight,
           fontFamily: 'Cairo',
-          fontWeight: FontWeight.w700,
-          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          fontSize: textSizeMedium,
         ),
         elevation: 0.0,
         backgroundColor: MyColors.cAppBarLight,
@@ -84,8 +86,8 @@ ThemeData darkTheme() => ThemeData(
         titleTextStyle: TextStyle(
           color: MyColors.cAppBarTextDark,
           fontFamily: 'Cairo',
-          fontWeight: FontWeight.w700,
-          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          fontSize: textSizeMedium,
         ),
         elevation: 0.0,
         backgroundColor: MyColors.cAppBarDark,

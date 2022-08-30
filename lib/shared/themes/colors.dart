@@ -43,7 +43,7 @@ class MyColors {
   static const cAppBarLight = Colors.white;
   static const cAppBarDark = Color(0xff222831);
 
-  static const cAppBarTextLight = Color(0xff1ABC00);
+  static const cAppBarTextLight = Colors.black;
   static const cAppBarTextDark = Colors.white;
 
   static const cAppBarIconLight = Colors.black;
