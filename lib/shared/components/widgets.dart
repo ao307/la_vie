@@ -1,7 +1,97 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:la_vie/shared/components/constants.dart';
+import 'package:la_vie/shared/components/image_assets.dart';
+import 'package:la_vie/shared/components/reuse_functions.dart';
 
 import '../themes/colors.dart';
+
+class LoadingPage extends StatelessWidget {
+  const LoadingPage({Key? key, this.appBar}) : super(key: key);
+  final PreferredSizeWidget? appBar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: appBar,
+      body: const Center(
+        child: CircularProgressIndicator.adaptive(),
+      ),
+    );
+  }
+}
+
+class ErrorPage extends StatelessWidget {
+  const ErrorPage({Key? key, this.appBar}) : super(key: key);
+  final PreferredSizeWidget? appBar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: appBar,
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(ImagesInAssets.emptyFile),
+            const SizedBox(height: paddingSmall),
+            Text(
+              'ooops!'.tr().toCapitalized(),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: textSizeLarge,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'slow or no internet connection.'.tr().toCapitalized(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                height: 1,
+                fontWeight: FontWeight.w600,
+                color: MyColors.cTextSubtitleLight.withOpacity(1),
+              ),
+            ),
+            Text(
+              'please check your internet connection.'.tr().toCapitalized(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: MyColors.cTextSubtitleLight.withOpacity(1),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyWidget extends StatelessWidget {
+  const EmptyWidget({Key? key, this.title}) : super(key: key);
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(ImagesInAssets.emptyFile),
+        const SizedBox(height: paddingSmall),
+        Text(
+          '$title!'.tr().toCapitalized(),
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: textSizeLarge,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({Key? key}) : super(key: key);

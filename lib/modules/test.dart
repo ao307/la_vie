@@ -8,22 +8,20 @@ class TestPro extends StatelessWidget {
     return Column(
       children: [
       Container(
+      width: 176.0,
+      height: 227.0,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18.0),
-        color: const Color(0xFF53B175).withOpacity(0.1),
-        border: Border.all(
-          color: const Color(0xFF53B175).withOpacity(0.7),
-        ),
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.0),
-            offset: const Offset(0, 6.0),
-            blurRadius: 24.0,
+            color: Colors.black.withOpacity(0.09),
+            offset: Offset(0, 2.0),
+            blurRadius: 18.0,
           ),
         ],
       ),
-    )
-      ],
+    )      ],
     );
   }
 }

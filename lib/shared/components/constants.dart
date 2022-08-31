@@ -31,5 +31,16 @@ const iconSizeLarge = 32.0;
 
 // TODO: CONSTANTS WIDGETS
 
-const arrowLeftIcon = Icon(IconlyBroken.arrowLeft2,size: iconSizeLarge,);
-const arrowRightIcon = Icon(IconlyBroken.arrowRight2,size: iconSizeLarge,);
+const arrowLeftIcon = Icon(
+  IconlyBroken.arrowLeft2,
+  size: iconSizeLarge,
+);
+const arrowRightIcon = Icon(
+  IconlyBroken.arrowRight2,
+  size: iconSizeLarge,
+);
+
+// TODO: TOKENS
+
+String? accessTokenConst;
+String? refreshTokenConst;

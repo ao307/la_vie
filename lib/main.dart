@@ -11,6 +11,7 @@ import 'package:la_vie/shared/bloc_observer.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/cubit/auth_cubit/auth_cubit.dart';
 import 'package:la_vie/shared/cubit/cubit.dart';
+import 'package:la_vie/shared/cubit/home_screen_cubit/home_screen_cubit.dart';
 import 'package:la_vie/shared/cubit/states.dart';
 import 'package:la_vie/shared/themes/themes.dart';
 
@@ -23,9 +24,9 @@ Future<void> startScreen() async {
   final isDark = await box.get(isDarkBox);
   AppCubit.isDark = isDark ?? false;
   //
-  final refreshToken = await box.get(refreshTokenBox);
-  final accessToken = await box.get(accessTokenBox);
-  if (refreshToken != null && accessToken != null) {
+  refreshTokenConst = await box.get(refreshTokenBox);
+  accessTokenConst = await box.get(accessTokenBox);
+  if (refreshTokenConst != null && accessTokenConst != null) {
     startScreenDoctor = HomeLayout();
   }
 }
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AppCubit()),
         BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => HomeScreenCubit()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
