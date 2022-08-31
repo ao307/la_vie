@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../shared/themes/colors.dart';
@@ -18,43 +17,50 @@ class ProductCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        InkWell(
-          splashColor: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-              color: MyColors.cTextSubtitleLight.withOpacity(.1),
-            ),
-            child: const Icon(
-              Icons.remove,
-              color: MyColors.cTextSubtitleLight,
-            ),
-          ),
-          onTap: () {
-            minusFunction!();
-          },
+        InkCounterItem(
+          function: minusFunction,
+          icon: Icons.remove,
         ),
         Text(
-          '  ${count??0}  ',
+          '  ${count ?? 0}  ',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
-        InkWell(
-          splashColor: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-              color: MyColors.cTextSubtitleLight.withOpacity(.1),
-            ),
-            child: const Icon(
-              Icons.add,
-              color: MyColors.cTextSubtitleLight,
-            ),
-          ),
-          onTap: () {
-            addFunction!();
-          },
+        InkCounterItem(
+          function: addFunction,
+          icon: Icons.add,
         ),
       ],
+    );
+  }
+}
+
+class InkCounterItem extends StatelessWidget {
+  const InkCounterItem({
+    Key? key,
+    this.function,
+    this.icon,
+  }) : super(key: key);
+  final Function? function;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      splashColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: MyColors.cTextSubtitleLight.withOpacity(.1),
+        ),
+        child: Icon(
+          icon,
+          color: MyColors.cTextSubtitleLight,
+        ),
+      ),
+      onTap: () {
+        function!();
+      },
     );
   }
 }

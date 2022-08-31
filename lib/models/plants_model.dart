@@ -9,7 +9,7 @@ class PlantsModel {
   PlantsModel({
       String? type, 
       String? message, 
-      List<Data>? data,}){
+      List<PlantData>? data,}){
     _type = type;
     _message = message;
     _data = data;
@@ -21,23 +21,23 @@ class PlantsModel {
     if (json['data'] != null) {
       _data = [];
       json['data'].forEach((v) {
-        _data?.add(Data.fromJson(v));
+        _data?.add(PlantData.fromJson(v));
       });
     }
   }
   String? _type;
   String? _message;
-  List<Data>? _data;
+  List<PlantData>? _data;
 PlantsModel copyWith({  String? type,
   String? message,
-  List<Data>? data,
+  List<PlantData>? data,
 }) => PlantsModel(  type: type ?? _type,
   message: message ?? _message,
   data: data ?? _data,
 );
   String? get type => _type;
   String? get message => _message;
-  List<Data>? get data => _data;
+  List<PlantData>? get data => _data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -59,10 +59,10 @@ PlantsModel copyWith({  String? type,
 /// sunLight : 7
 /// temperature : 6
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
-class Data {
-  Data({
+PlantData dataFromJson(String str) => PlantData.fromJson(json.decode(str));
+String dataToJson(PlantData data) => json.encode(data.toJson());
+class PlantData {
+  PlantData({
       String? plantId, 
       String? name, 
       String? description, 
@@ -79,7 +79,7 @@ class Data {
     _temperature = temperature;
 }
 
-  Data.fromJson(dynamic json) {
+  PlantData.fromJson(dynamic json) {
     _plantId = json['plantId'];
     _name = json['name'];
     _description = json['description'];
@@ -95,14 +95,14 @@ class Data {
   num? _waterCapacity;
   num? _sunLight;
   num? _temperature;
-Data copyWith({  String? plantId,
+PlantData copyWith({  String? plantId,
   String? name,
   String? description,
   String? imageUrl,
   num? waterCapacity,
   num? sunLight,
   num? temperature,
-}) => Data(  plantId: plantId ?? _plantId,
+}) => PlantData(  plantId: plantId ?? _plantId,
   name: name ?? _name,
   description: description ?? _description,
   imageUrl: imageUrl ?? _imageUrl,

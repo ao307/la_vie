@@ -25,10 +25,10 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     "tools",
   ];
   List<Widget> bodyOfHome = [
+    Container(),
     const PlantsBody(),
-    const PlantsBody(),
-    const PlantsBody(),
-    const PlantsBody(),
+    Container(),
+    Container(),
   ];
   int indexOfTap = 0;
 
@@ -46,13 +46,13 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     await DioHelper.getData(
       url: seedsEP,
       token: accessTokenConst,
-    ).then((value) {
+    ).then((value) async {
       seedsModel = SeedsModel.fromJson(value.data);
       seedsCount.clear();
       for (final element in seedsModel!.data!) {
         seedsCount.add(0);
       }
-      getPlantsSecond();
+      await getPlantsSecond();
     }).catchError((onError) {
       if (kDebugMode) {
         showToast(msg: 'error on seeds');
@@ -62,6 +62,21 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     });
   }
 
+  void addSeedsFun(int index) {
+    if (seedsCount[index] < 9) {
+      seedsCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusSeedsFun(int index) {
+    if (seedsCount[index] > 0) {
+      seedsCount[index]--;
+    }
+    emit(AnyState());
+  }
+
+  // TODO: All plants functions
   PlantsModel? plantsModel;
   List<int> plantsCount = [];
 
@@ -69,13 +84,13 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     await DioHelper.getData(
       url: plantsEP,
       token: accessTokenConst,
-    ).then((value) {
+    ).then((value) async {
       plantsModel = PlantsModel.fromJson(value.data);
       plantsCount.clear();
       for (final element in plantsModel!.data!) {
-        seedsCount.add(0);
+        plantsCount.add(0);
       }
-      getToolsThird();
+      await getToolsThird();
     }).catchError((onError) {
       if (kDebugMode) {
         showToast(msg: 'error on plants');
@@ -84,13 +99,27 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
     });
   }
 
+  void addPlantFun(int index) {
+    if (plantsCount[index] < 9) {
+      plantsCount[index]++;
+    }    emit(AnyState());
+  }
+
+  void minusPlantFun(int index) {
+    if (plantsCount[index] > 0) {
+      plantsCount[index]--;
+    }
+    emit(AnyState());
+  }
+
   ToolsModel? toolsModel;
-  List<int> toolsCount=[];
+  List<int> toolsCount = [];
+
   Future<void> getToolsThird() async {
     await DioHelper.getData(
       url: toolsEP,
       token: accessTokenConst,
-    ).then((value) {
+    ).then((value) async {
       toolsModel = ToolsModel.fromJson(value.data);
       toolsCount.clear();
       for (final element in toolsModel!.data!) {
@@ -103,5 +132,19 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
       }
       emit(GetHomeDataErrorState(onError.toString()));
     });
+  }
+
+  void addToolsFun(int index) {
+    if (toolsCount[index] < 9) {
+      toolsCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusToolsFun(int index) {
+    if (toolsCount[index] > 0) {
+      toolsCount[index]--;
+    }
+    emit(AnyState());
   }
 }

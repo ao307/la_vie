@@ -6,7 +6,7 @@ class LoginModel {
   LoginModel({
     String? type,
     String? message,
-    Data? data,
+    DataLogin? data,
   }) {
     _type = type;
     _message = message;
@@ -16,17 +16,17 @@ class LoginModel {
   LoginModel.fromJson(dynamic json) {
     _type = json['type'];
     _message = json['message'];
-    _data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    _data = json['data'] != null ? DataLogin.fromJson(json['data']) : null;
   }
 
   String? _type;
   String? _message;
-  Data? _data;
+  DataLogin? _data;
 
   LoginModel copyWith({
     String? type,
     String? message,
-    Data? data,
+    DataLogin? data,
   }) =>
       LoginModel(
         type: type ?? _type,
@@ -38,7 +38,7 @@ class LoginModel {
 
   String? get message => _message;
 
-  Data? get data => _data;
+  DataLogin? get data => _data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -55,8 +55,8 @@ class LoginModel {
 /// accessToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjQxMzM3Ni1jMzk1LTQwMGYtODkyMi1mODRjMzI4NjYzNmMiLCJpYXQiOjE2NjE4MDU2ODQsImV4cCI6MTY2MTk3ODQ4NH0.MqB73qvCFfe-fEYGJ03rMklDTCQwsa4uJGUAwh6fRqo"
 /// refreshToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjQxMzM3Ni1jMzk1LTQwMGYtODkyMi1mODRjMzI4NjYzNmMiLCJyZWZyZXNoIjp0cnVlLCJpYXQiOjE2NjE4MDU2ODQsImV4cCI6MTY2MjQxMDQ4NH0.eKPVmJDkwylm2Lwz-seW4elXIiWwBBuSXn9rIzyU9Cg"
 
-class Data {
-  Data({
+class DataLogin {
+  DataLogin({
     User? user,
     String? accessToken,
     String? refreshToken,
@@ -66,7 +66,7 @@ class Data {
     _refreshToken = refreshToken;
   }
 
-  Data.fromJson(dynamic json) {
+  DataLogin.fromJson(dynamic json) {
     _user = json['user'] != null ? User.fromJson(json['user']) : null;
     _accessToken = json['accessToken'];
     _refreshToken = json['refreshToken'];
@@ -76,12 +76,12 @@ class Data {
   String? _accessToken;
   String? _refreshToken;
 
-  Data copyWith({
+  DataLogin copyWith({
     User? user,
     String? accessToken,
     String? refreshToken,
   }) =>
-      Data(
+      DataLogin(
         user: user ?? _user,
         accessToken: accessToken ?? _accessToken,
         refreshToken: refreshToken ?? _refreshToken,
