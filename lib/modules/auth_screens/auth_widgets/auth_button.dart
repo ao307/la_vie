@@ -5,7 +5,7 @@ import 'package:la_vie/shared/themes/colors.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
   final Color? color;
   final Color? textColor;
   final double? height;
@@ -13,7 +13,7 @@ class AuthButton extends StatelessWidget {
   const AuthButton({
     required this.text,
     this.height=54,
-    required this.onPressed,
+    this.onPressed,
     this.color=MyColors.cPrimary,
     this.textColor=Colors.white,
     Key? key,
@@ -44,7 +44,7 @@ class AuthButton extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: onPressed,
+          onPressed: onPressed??(){},
           child: Text(
             text.tr().toUpperCase(),
             style: TextStyle(

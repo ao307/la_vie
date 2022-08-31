@@ -14,11 +14,13 @@ class PlantsGridItem extends StatelessWidget {
     required this.count,
     this.addFun,
     this.minusFun,
+    this.addToCart,
   }) : super(key: key);
   final PlantData? data;
   final int? count;
   final Function? addFun;
   final Function? minusFun;
+  final Function()? addToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +104,7 @@ class PlantsGridItem extends StatelessWidget {
                     height: paddingSmall,
                   ),
                   AuthButton(
-                    onPressed: () {},
+                    onPressed: addToCart,
                     text: 'add to cart',
                     height: 40,
                   ),
