@@ -9,7 +9,7 @@ class ToolsModel {
   ToolsModel({
       String? type, 
       String? message, 
-      List<Data>? data,}){
+      List<DataTools>? data,}){
     _type = type;
     _message = message;
     _data = data;
@@ -21,23 +21,23 @@ class ToolsModel {
     if (json['data'] != null) {
       _data = [];
       json['data'].forEach((v) {
-        _data?.add(Data.fromJson(v));
+        _data?.add(DataTools.fromJson(v));
       });
     }
   }
   String? _type;
   String? _message;
-  List<Data>? _data;
+  List<DataTools>? _data;
 ToolsModel copyWith({  String? type,
   String? message,
-  List<Data>? data,
+  List<DataTools>? data,
 }) => ToolsModel(  type: type ?? _type,
   message: message ?? _message,
   data: data ?? _data,
 );
   String? get type => _type;
   String? get message => _message;
-  List<Data>? get data => _data;
+  List<DataTools>? get data => _data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -56,10 +56,10 @@ ToolsModel copyWith({  String? type,
 /// description : "sharpaxe"
 /// imageUrl : ""
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
-class Data {
-  Data({
+DataTools dataFromJson(String str) => DataTools.fromJson(json.decode(str));
+String dataToJson(DataTools data) => json.encode(data.toJson());
+class DataTools {
+  DataTools({
       String? toolId, 
       String? name, 
       String? description, 
@@ -70,7 +70,7 @@ class Data {
     _imageUrl = imageUrl;
 }
 
-  Data.fromJson(dynamic json) {
+  DataTools.fromJson(dynamic json) {
     _toolId = json['toolId'];
     _name = json['name'];
     _description = json['description'];
@@ -80,11 +80,11 @@ class Data {
   String? _name;
   String? _description;
   String? _imageUrl;
-Data copyWith({  String? toolId,
+DataTools copyWith({  String? toolId,
   String? name,
   String? description,
   String? imageUrl,
-}) => Data(  toolId: toolId ?? _toolId,
+}) => DataTools(  toolId: toolId ?? _toolId,
   name: name ?? _name,
   description: description ?? _description,
   imageUrl: imageUrl ?? _imageUrl,
