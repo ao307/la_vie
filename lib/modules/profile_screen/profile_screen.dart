@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
                     start: paddingSmall,
                   ),
                   child: ProfileImageName(
-                    image: ImagesInAssets.slider3,
+                    image: ImagesInAssets.logo,
                     name: "ريتاج أشرف",
                     email: "retagashraf@gmail.com",
                   ),

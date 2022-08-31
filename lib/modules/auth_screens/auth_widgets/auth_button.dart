@@ -8,9 +8,11 @@ class AuthButton extends StatelessWidget {
   final Function() onPressed;
   final Color? color;
   final Color? textColor;
+  final double? height;
 
   const AuthButton({
     required this.text,
+    this.height=54,
     required this.onPressed,
     this.color=MyColors.cPrimary,
     this.textColor=Colors.white,
@@ -27,7 +29,7 @@ class AuthButton extends StatelessWidget {
       ),
       child: SizedBox(
         width: double.infinity,
-        height: 54,
+        height:height,
         child: ElevatedButton(
           style: ButtonStyle(
             // elevation: MaterialStateProperty.all(0),
