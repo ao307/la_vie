@@ -24,8 +24,8 @@ class PlantsBody extends StatelessWidget {
             return PlantsGridItem(
               data: homeScreenCubit.plantsModel!.data![index],
               count: homeScreenCubit.plantsCount[index],
-              addFun: ()=>homeScreenCubit.addPlantFun(index),
-              minusFun: ()=>homeScreenCubit.minusPlantFun(index),
+              addFun: () => homeScreenCubit.addPlantFun(index),
+              minusFun: () => homeScreenCubit.minusPlantFun(index),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
