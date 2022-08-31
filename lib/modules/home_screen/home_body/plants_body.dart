@@ -74,10 +74,10 @@ class PlantsBody extends StatelessWidget {
                               ),
                             ),
                           ),
-                           const Padding(
-                            padding:  EdgeInsets.only(top: paddingLarge*2),
+                            Padding(
+                            padding:const EdgeInsets.only(top: paddingLarge*2),
                             child: ProductCounter(
-                              count: 0,
+                              count: homeScreenCubit.plantsCount[index],
                             ),
                           ),
                         ],
