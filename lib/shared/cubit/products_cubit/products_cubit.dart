@@ -7,7 +7,7 @@ import 'package:la_vie/models/seeds_model.dart';
 import 'package:la_vie/modules/home_screen/home_body/tools_body.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
-import 'package:la_vie/shared/cubit/home_screen_cubit/home_screen_states.dart';
+import 'package:la_vie/shared/cubit/products_cubit/products_states.dart';
 
 import '../../../models/tools_model.dart';
 import '../../../modules/home_screen/home_body/plants_body.dart';
@@ -15,11 +15,11 @@ import '../../../modules/home_screen/home_body/seeds_body.dart';
 import '../../api/end_points.dart';
 import '../../api/remote/dio_helper.dart';
 
-class HomeScreenCubit extends Cubit<HomeScreenStates> {
-  HomeScreenCubit() : super(HomeScreenInitialState());
+class ProductsCubit extends Cubit<ProductsStates> {
+  ProductsCubit() : super(ProductsInitialState());
 
   // ignore: type_annotate_public_apis
-  static HomeScreenCubit get(context) => BlocProvider.of(context);
+  static ProductsCubit get(context) => BlocProvider.of(context);
 
   List<String> tapText = [
     "all",
@@ -42,10 +42,9 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
 
   // ordered run function
   SeedsModel? seedsModel;
-  List<int> seedsCount = [];
 
   Future<void> getSeedsFirst() async {
-    emit(GetHomeDataLoadingState());
+    emit(GetProductsDataLoadingState());
     await DioHelper.getData(
       url: seedsEP,
       token: accessTokenConst,
@@ -61,27 +60,12 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
         showToast(msg: 'error on seeds');
         printFullText(onError.toString());
       }
-      emit(GetHomeDataErrorState(onError.toString()));
+      emit(GetProductsDataErrorState(onError.toString()));
     });
-  }
-
-  void addSeedsFun(int index) {
-    if (seedsCount[index] < 9) {
-      seedsCount[index]++;
-    }
-    emit(AnyState());
-  }
-
-  void minusSeedsFun(int index) {
-    if (seedsCount[index] > 0) {
-      seedsCount[index]--;
-    }
-    emit(AnyState());
   }
 
   // TODO: All plants functions
   PlantsModel? plantsModel;
-  List<int> plantsCount = [];
 
   Future<void> getPlantsSecond() async {
     await DioHelper.getData(
@@ -98,26 +82,11 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
       if (kDebugMode) {
         showToast(msg: 'error on plants');
       }
-      emit(GetHomeDataErrorState(onError.toString()));
+      emit(GetProductsDataErrorState(onError.toString()));
     });
   }
 
-  void addPlantFun(int index) {
-    if (plantsCount[index] < 9) {
-      plantsCount[index]++;
-    }
-    emit(AnyState());
-  }
-
-  void minusPlantFun(int index) {
-    if (plantsCount[index] > 0) {
-      plantsCount[index]--;
-    }
-    emit(AnyState());
-  }
-
   ToolsModel? toolsModel;
-  List<int> toolsCount = [];
 
   Future<void> getToolsThird() async {
     await DioHelper.getData(
@@ -129,36 +98,23 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
       for (final element in toolsModel!.data!) {
         toolsCount.add(0);
       }
-      emit(GetHomeDataSuccessState());
+      emit(GetProductsDataSuccessState());
     }).catchError((onError) {
       if (kDebugMode) {
         showToast(msg: 'error on tools');
       }
-      emit(GetHomeDataErrorState(onError.toString()));
+      emit(GetProductsDataErrorState(onError.toString()));
     });
   }
 
-  void addToolsFun(int index) {
-    if (toolsCount[index] < 9) {
-      toolsCount[index]++;
-    }
-    emit(AnyState());
-  }
-
-  void minusToolsFun(int index) {
-    if (toolsCount[index] > 0) {
-      toolsCount[index]--;
-    }
-    emit(AnyState());
-  }
-
+  // TODO: Products Functions
   ProductsModel? productsModel;
   List<ProductData> productPlant = [];
   List<ProductData> productSeed = [];
   List<ProductData> productTool = [];
 
   Future<void> getProducts() async {
-    emit(GetHomeDataLoadingState());
+    emit(GetProductsDataLoadingState());
     await DioHelper.getData(
       url: productsEP,
       token: accessTokenConst,
@@ -166,23 +122,23 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
       productsModel = ProductsModel.fromJson(value.data);
       await clearAllProductLists();
       await fillAllProductLists();
-      emit(GetHomeDataSuccessState());
+      emit(GetProductsDataSuccessState());
     }).catchError((onError) {
       if (kDebugMode) {
         showToast(msg: 'error on products');
         printFullText(onError.toString());
       }
-      emit(GetHomeDataErrorState(onError.toString()));
+      emit(GetProductsDataErrorState(onError.toString()));
     });
   }
 
   Future<void> clearAllProductLists() async {
-    seedsCount.clear();
+    toolsCount.clear();
     plantsCount.clear();
     seedsCount.clear();
+    productTool.clear();
     productPlant.clear();
     productSeed.clear();
-    productTool.clear();
   }
 
   Future<void> fillAllProductLists() async {
@@ -198,5 +154,53 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
         toolsCount.add(0);
       }
     }
+  }
+
+  // TODO:functions of number of tools counter
+  List<int> toolsCount = [];
+  void addToolsFun(int index) {
+    if (toolsCount[index] < 9) {
+      toolsCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusToolsFun(int index) {
+    if (toolsCount[index] > 0) {
+      toolsCount[index]--;
+    }
+    emit(AnyState());
+  }
+
+  // TODO: functions of number of plants counter
+  List<int> plantsCount = [];
+  void addPlantFun(int index) {
+    if (plantsCount[index] < 9) {
+      plantsCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusPlantFun(int index) {
+    if (plantsCount[index] > 0) {
+      plantsCount[index]--;
+    }
+    emit(AnyState());
+  }
+
+  // TODO:functions of  number of seeds counter
+  List<int> seedsCount = [];
+  void addSeedsFun(int index) {
+    if (seedsCount[index] < 9) {
+      seedsCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusSeedsFun(int index) {
+    if (seedsCount[index] > 0) {
+      seedsCount[index]--;
+    }
+    emit(AnyState());
   }
 }

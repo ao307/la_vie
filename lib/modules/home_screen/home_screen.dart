@@ -11,19 +11,20 @@ import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/components/widgets.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
-import '../../shared/cubit/home_screen_cubit/home_screen_cubit.dart';
-import '../../shared/cubit/home_screen_cubit/home_screen_states.dart';
+import '../../shared/cubit/products_cubit/products_cubit.dart';
+import '../../shared/cubit/products_cubit/products_states.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final HomeScreenCubit homeScreenCubit = HomeScreenCubit.get(context);
+    final ProductsCubit homeScreenCubit = ProductsCubit.get(context);
     return FutureBuilder(
-      future: homeScreenCubit.getSeedsFirst(),
+      future: homeScreenCubit.getProducts(),
       builder: (context, snapshot) {
-        return BlocConsumer<HomeScreenCubit, HomeScreenStates>(
+        return BlocConsumer<ProductsCubit, ProductsStates>(
           listener: (context, state) {},
           builder: (context, state) {
             if (snapshot.connectionState == ConnectionState.waiting &&
@@ -40,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               );
             }
-            else if(snapshot.hasError||state is GetHomeDataErrorState){
+            else if(snapshot.hasError||state is GetProductsDataErrorState){
               return ErrorPage(
                 appBar: AppBar(
                   centerTitle: true,

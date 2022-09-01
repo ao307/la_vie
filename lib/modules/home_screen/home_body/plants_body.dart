@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/shared/components/constants.dart';
-import '../../../shared/cubit/home_screen_cubit/home_screen_cubit.dart';
-import '../../../shared/cubit/home_screen_cubit/home_screen_states.dart';
+import '../../../shared/cubit/products_cubit/products_cubit.dart';
+import '../../../shared/cubit/products_cubit/products_states.dart';
 import '../home_widgets/plants_item.dart';
 
 class PlantsBody extends StatelessWidget {
@@ -10,8 +10,8 @@ class PlantsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeScreenCubit homeScreenCubit = HomeScreenCubit.get(context);
-    return BlocConsumer<HomeScreenCubit, HomeScreenStates>(
+    final ProductsCubit homeScreenCubit = ProductsCubit.get(context);
+    return BlocConsumer<ProductsCubit, ProductsStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return GridView.builder(
