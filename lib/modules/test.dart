@@ -16,7 +16,7 @@ class TestPro extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.09),
-            offset: Offset(0, 2.0),
+            offset: const Offset(0, 2.0),
             blurRadius: 18.0,
           ),
         ],
