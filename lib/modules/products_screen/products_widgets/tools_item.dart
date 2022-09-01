@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:la_vie/models/tools_model.dart';
+import 'package:la_vie/modules/products_screen/products_widgets/products_counter.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
+import '../../../models/products_model.dart';
 import '../../../shared/themes/colors.dart';
 import '../../auth_screens/auth_widgets/auth_button.dart';
-import '../home_widgets/home_counter.dart';
 
 class ToolsGridItem extends StatelessWidget {
   const ToolsGridItem({
@@ -16,7 +17,7 @@ class ToolsGridItem extends StatelessWidget {
     this.minusFun,
     this.addToCart,
   }) : super(key: key);
-  final DataTools? data;
+  final ProductData? data;
   final int? count;
   final Function? addFun;
   final Function? minusFun;
@@ -92,14 +93,14 @@ class ToolsGridItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // product subtitle
-                  // Text(
-                  //   "${data!.seedId ?? 0} TMP",
-                  //   style: const TextStyle(
-                  //     fontSize: textSizeSmall,
-                  //     fontWeight: FontWeight.w600,
-                  //   ),
-                  // ),
+                  //product subtitle
+                  Text(
+                    "${data!.price ?? 0} EGP",
+                    style: const TextStyle(
+                      fontSize: textSizeSmall,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   const SizedBox(
                     height: paddingSmall,
                   ),

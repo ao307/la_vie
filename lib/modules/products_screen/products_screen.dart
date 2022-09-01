@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:la_vie/modules/home_screen/home_widgets/search_text_form.dart';
+import 'package:la_vie/modules/products_screen/products_widgets/search_text_form.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
@@ -14,23 +14,20 @@ import 'package:la_vie/shared/themes/colors.dart';
 import '../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
 
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class ProductsScreen extends StatelessWidget {
+  const ProductsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final ProductsCubit homeScreenCubit = ProductsCubit.get(context);
+    final ProductsCubit productScreenCubit = ProductsCubit.get(context);
     return FutureBuilder(
-      future: homeScreenCubit.getProducts(),
+      future: productScreenCubit.getProducts(),
       builder: (context, snapshot) {
         return BlocConsumer<ProductsCubit, ProductsStates>(
           listener: (context, state) {},
           builder: (context, state) {
             if (snapshot.connectionState == ConnectionState.waiting &&
-                (homeScreenCubit.seedsModel == null ||
-                    homeScreenCubit.toolsModel == null ||
-                    homeScreenCubit.plantsModel == null)) {
+                productScreenCubit.productsModel == null) {
               return LoadingPage(
                 appBar: AppBar(
                   centerTitle: true,
@@ -40,8 +37,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               );
-            }
-            else if(snapshot.hasError||state is GetProductsDataErrorState){
+            } else if (snapshot.hasError ||
+                state is GetProductsDataErrorState) {
               return ErrorPage(
                 appBar: AppBar(
                   centerTitle: true,
@@ -63,7 +60,8 @@ class HomeScreen extends StatelessWidget {
               body: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: paddingMedium),
                     child: Row(
                       children: [
                         Expanded(
@@ -89,12 +87,13 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: paddingLarge),
                   Expanded(
                     child: ContainedTabBarView(
-                      initialIndex: homeScreenCubit.indexOfTap,
+                      initialIndex: productScreenCubit.indexOfTap,
                       tabBarProperties: TabBarProperties(
                         indicatorSize: TabBarIndicatorSize.tab,
                         height: 40,
                         isScrollable: true,
-                        padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: paddingMedium),
                         labelPadding: const EdgeInsets.symmetric(
                           horizontal: paddingMedium,
                         ),
@@ -113,16 +112,16 @@ class HomeScreen extends StatelessWidget {
                         unselectedLabelColor: MyColors.cTextSubtitleLight,
                       ),
                       tabs: List.generate(
-                        homeScreenCubit.tapText.length,
+                        productScreenCubit.tapText.length,
                         (index) => Container(
                           height: 100,
                           alignment: AlignmentDirectional.center,
-                          padding: homeScreenCubit.indexOfTap != index
+                          padding: productScreenCubit.indexOfTap != index
                               ? const EdgeInsets.symmetric(
                                   horizontal: paddingLarge,
                                 )
                               : EdgeInsets.zero,
-                          decoration: homeScreenCubit.indexOfTap != index
+                          decoration: productScreenCubit.indexOfTap != index
                               ? BoxDecoration(
                                   color: MyColors.cTextSubtitleLight
                                       .withOpacity(0.2),
@@ -132,16 +131,18 @@ class HomeScreen extends StatelessWidget {
                                 )
                               : null,
                           child: Text(
-                            homeScreenCubit.tapText[index].tr().toTitleCase(),
+                            productScreenCubit.tapText[index]
+                                .tr()
+                                .toTitleCase(),
                           ),
                         ),
                       ),
                       views: List.generate(
-                        homeScreenCubit.tapText.length,
-                        (index) => homeScreenCubit.bodyOfHome[index],
+                        productScreenCubit.tapText.length,
+                        (index) => productScreenCubit.bodyOfHome[index],
                       ),
                       onChange: (index) =>
-                          homeScreenCubit.changeIndexOfTap(index),
+                          productScreenCubit.changeIndexOfTap(index),
                     ),
                   ),
                 ],
