@@ -3,12 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/models/plants_model.dart';
 import 'package:la_vie/models/seeds_model.dart';
+import 'package:la_vie/modules/home_screen/home_body/tools_body.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/home_screen_cubit/home_screen_states.dart';
 
 import '../../../models/tools_model.dart';
 import '../../../modules/home_screen/home_body/plants_body.dart';
+import '../../../modules/home_screen/home_body/seeds_body.dart';
 import '../../api/end_points.dart';
 import '../../api/remote/dio_helper.dart';
 
@@ -27,8 +29,8 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   List<Widget> bodyOfHome = [
     Container(),
     const PlantsBody(),
-    Container(),
-    Container(),
+    const SeedsBody(),
+    const ToolsBody(),
   ];
   int indexOfTap = 0;
 
