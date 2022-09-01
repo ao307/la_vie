@@ -8,7 +8,7 @@ import 'package:la_vie/shared/cubit/cubit.dart';
 import 'package:la_vie/shared/cubit/states.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
-import '../../modules/home_screen/home_screen.dart';
+import '../../modules/products_screen/products_screen.dart';
 
 class HomeLayout extends StatelessWidget {
   HomeLayout({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class HomeLayout extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             child: FloatingActionButton(
               onPressed: () {
-                navigateTo(context: context, widget: const HomeScreen());
+                navigateTo(context: context, widget: const ProductsScreen());
               },
               child: const FaIcon(
                 IconlyLight.home,
