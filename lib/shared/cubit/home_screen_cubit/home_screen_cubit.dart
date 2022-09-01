@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/models/plants_model.dart';
+import 'package:la_vie/models/products_model.dart';
 import 'package:la_vie/models/seeds_model.dart';
 import 'package:la_vie/modules/home_screen/home_body/tools_body.dart';
 import 'package:la_vie/shared/components/constants.dart';
@@ -104,7 +105,8 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
   void addPlantFun(int index) {
     if (plantsCount[index] < 9) {
       plantsCount[index]++;
-    }    emit(AnyState());
+    }
+    emit(AnyState());
   }
 
   void minusPlantFun(int index) {
@@ -148,5 +150,53 @@ class HomeScreenCubit extends Cubit<HomeScreenStates> {
       toolsCount[index]--;
     }
     emit(AnyState());
+  }
+
+  ProductsModel? productsModel;
+  List<ProductData> productPlant = [];
+  List<ProductData> productSeed = [];
+  List<ProductData> productTool = [];
+
+  Future<void> getProducts() async {
+    emit(GetHomeDataLoadingState());
+    await DioHelper.getData(
+      url: productsEP,
+      token: accessTokenConst,
+    ).then((value) async {
+      productsModel = ProductsModel.fromJson(value.data);
+      await clearAllProductLists();
+      await fillAllProductLists();
+      emit(GetHomeDataSuccessState());
+    }).catchError((onError) {
+      if (kDebugMode) {
+        showToast(msg: 'error on products');
+        printFullText(onError.toString());
+      }
+      emit(GetHomeDataErrorState(onError.toString()));
+    });
+  }
+
+  Future<void> clearAllProductLists() async {
+    seedsCount.clear();
+    plantsCount.clear();
+    seedsCount.clear();
+    productPlant.clear();
+    productSeed.clear();
+    productTool.clear();
+  }
+
+  Future<void> fillAllProductLists() async {
+    for (final element in productsModel!.data!) {
+      if (element.type!.toLowerCase() == 'plant') {
+        productPlant.add(element);
+        plantsCount.add(0);
+      } else if (element.type!.toLowerCase() == 'seed') {
+        productSeed.add(element);
+        seedsCount.add(0);
+      } else if (element.type!.toLowerCase() == 'tool') {
+        productTool.add(element);
+        toolsCount.add(0);
+      }
+    }
   }
 }
