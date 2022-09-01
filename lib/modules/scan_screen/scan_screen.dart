@@ -19,14 +19,12 @@ class ScanScreen extends StatelessWidget {
             centerTitle: true,
             title: Text('scan'.tr().toCapitalized()),
           ),
-          body: SafeArea(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
-              children: [
+          body: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
+            children: [
 
 
-              ],
-            ),
+            ],
           ),
         );
       },
