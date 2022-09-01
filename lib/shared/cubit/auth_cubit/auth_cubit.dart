@@ -47,6 +47,8 @@ class AuthCubit extends Cubit<AuthStates> {
       },
     ).then((value) {
       loginModel = LoginModel.fromJson(value.data);
+      accessTokenConst=loginModel!.data!.accessToken;
+      refreshTokenConst=loginModel!.data!.refreshToken;
       AppBox.box.put(accessTokenBox, loginModel!.data!.accessToken);
       AppBox.box.put(refreshTokenBox, loginModel!.data!.refreshToken);
       emit(LoginSuccessState());

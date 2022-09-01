@@ -1,6 +1,7 @@
 // TODO: hive boxes
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:la_vie/shared/themes/colors.dart';
 
 const boxName = "boxName";
 const accessTokenBox = "accessToken";
@@ -34,13 +35,25 @@ const iconSizeLarge = 32.0;
 const arrowLeftIcon = Icon(
   IconlyBroken.arrowLeft2,
   size: iconSizeLarge,
+  color: MyColors.cPrimary,
 );
 const arrowRightIcon = Icon(
   IconlyBroken.arrowRight2,
   size: iconSizeLarge,
+  color: MyColors.cPrimary,
 );
 
 // TODO: TOKENS
 
 String? accessTokenConst;
 String? refreshTokenConst;
+
+// TODO: error images
+
+const baseApiUrl = "https://lavie.orangedigitalcenteregypt.com";
+const seedsErrorImage =
+    "https://cdn-icons-png.flaticon.com/128/5430/5430066.png";
+const plantsErrorImage =
+    "https://cdn-icons-png.flaticon.com/128/3200/3200085.png";
+const toolsErrorImage =
+    "https://cdn-icons-png.flaticon.com/128/3057/3057120.png";

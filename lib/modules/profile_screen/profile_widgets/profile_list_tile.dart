@@ -23,29 +23,54 @@ class ProfileListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: paddingSmall),
-      child: ListTile(
-        leading: Icon(
-          leadingIcon,
-          size: iconSizeLarge - 2,
-        ),
-        title: Text(
-          "$title".tr().toCapitalized(),
-          style: const TextStyle(
-            fontSize: textSizeMedium,
-            fontWeight: FontWeight.w600,
+      padding: const EdgeInsetsDirectional.only(bottom: paddingLarge),
+      child: Material(
+        child: InkWell(
+          borderRadius: BorderRadius.circular(paddingMedium),
+          onTap: onTap ?? () {},
+          child: Container(
+            padding:const EdgeInsetsDirectional.only(top: paddingSmall,bottom: paddingSmall,),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(paddingMedium),
+              border: Border.all(color: MyColors.cTextSubtitleLight,width: 1.5),
+            ),
+            child: ListTile(
+              iconColor: Colors.white,
+              leading: Container(
+                padding: const EdgeInsets.all(paddingSmall - 2),
+                decoration: BoxDecoration(
+                  color: MyColors.cPrimary,
+                  borderRadius: BorderRadius.circular(
+                    borderRadiusMedium,
+                  ),
+                ),
+                child: Icon(
+                  leadingIcon,
+                  size: iconSizeLarge - 2,
+                  color: Colors.white,
+                ),
+              ),
+              title: Text(
+                "$title".tr().toCapitalized(),
+                style: const TextStyle(
+                  fontSize: textSizeMedium,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              // subtitle: subTitle != null
+              //     ? Text(
+              //         "$subTitle".tr().toCapitalized(),
+              //         style: const TextStyle(
+              //           fontSize: textSizeSmall,
+              //           fontWeight: FontWeight.w600,
+              //           color: MyColors.cTextSubtitleLight,
+              //         ),
+              //       )
+              //     : null,
+              trailing: const Icon(Icons.arrow_forward,color: MyColors.cPrimary,size: iconSizeLarge,),
+            ),
           ),
         ),
-        subtitle:subTitle!=null ? Text(
-          "$subTitle".tr().toCapitalized(),
-          style: const TextStyle(
-            fontSize: textSizeSmall,
-            fontWeight: FontWeight.w600,
-            color: MyColors.cTextSubtitleLight,
-          ),
-        ):null,
-        trailing: trailing ?? (context.locale.toString() == 'ar_EG' ? arrowLeftIcon:arrowRightIcon),
-        onTap: onTap ?? () {},
       ),
     );
   }

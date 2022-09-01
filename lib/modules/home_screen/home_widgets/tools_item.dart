@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:la_vie/models/tools_model.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
-import '../../../models/plants_model.dart';
 import '../../../shared/themes/colors.dart';
 import '../../auth_screens/auth_widgets/auth_button.dart';
 import '../home_widgets/home_counter.dart';
 
-class PlantsGridItem extends StatelessWidget {
-  const PlantsGridItem({
+class ToolsGridItem extends StatelessWidget {
+  const ToolsGridItem({
     Key? key,
     required this.data,
     required this.count,
@@ -16,7 +16,7 @@ class PlantsGridItem extends StatelessWidget {
     this.minusFun,
     this.addToCart,
   }) : super(key: key);
-  final PlantData? data;
+  final DataTools? data;
   final int? count;
   final Function? addFun;
   final Function? minusFun;
@@ -66,7 +66,7 @@ class PlantsGridItem extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: data!.imageUrl!.isNotEmpty
                             ? "$baseApiUrl${data!.imageUrl}"
-                            : plantsErrorImage,
+                            : toolsErrorImage,
                       ),
                     ),
                   ),
@@ -86,20 +86,20 @@ class PlantsGridItem extends StatelessWidget {
                 children: [
                   // product name
                   Text(
-                    data!.name!.toTitleCase(),
+                    (data!.name ?? '').toTitleCase(),
                     style: const TextStyle(
                       fontSize: textSizeSmall,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   // product subtitle
-                  Text(
-                    "${data!.temperature ?? 0} TMP",
-                    style: const TextStyle(
-                      fontSize: textSizeSmall,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  // Text(
+                  //   "${data!.seedId ?? 0} TMP",
+                  //   style: const TextStyle(
+                  //     fontSize: textSizeSmall,
+                  //     fontWeight: FontWeight.w600,
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: paddingSmall,
                   ),
