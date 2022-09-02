@@ -22,6 +22,7 @@ class ProfileListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const tileColor=Color(0xff1D592C);
     return Padding(
       padding: const EdgeInsetsDirectional.only(bottom: paddingLarge),
       child: Material(
@@ -32,17 +33,18 @@ class ProfileListTile extends StatelessWidget {
             padding:const EdgeInsetsDirectional.only(top: paddingSmall,bottom: paddingSmall,),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(paddingMedium),
-              border: Border.all(color: MyColors.cTextSubtitleLight,width: 1.5),
+              border: Border.all(color: MyColors.cTextSubtitleLight.withOpacity(.4),width: 1.5,),
             ),
             child: ListTile(
               iconColor: Colors.white,
               leading: Container(
                 padding: const EdgeInsets.all(paddingSmall - 2),
                 decoration: BoxDecoration(
-                  color: MyColors.cPrimary,
+                  color: tileColor,
                   borderRadius: BorderRadius.circular(
                     borderRadiusMedium,
                   ),
+
                 ),
                 child: Icon(
                   leadingIcon,
@@ -51,7 +53,7 @@ class ProfileListTile extends StatelessWidget {
                 ),
               ),
               title: Text(
-                "$title".tr().toCapitalized(),
+                "$title".tr().toTitleCase(),
                 style: const TextStyle(
                   fontSize: textSizeMedium,
                   fontWeight: FontWeight.w600,
@@ -67,7 +69,7 @@ class ProfileListTile extends StatelessWidget {
               //         ),
               //       )
               //     : null,
-              trailing: const Icon(Icons.arrow_forward,color: MyColors.cPrimary,size: iconSizeLarge,),
+              trailing: const Icon(Icons.arrow_forward,color: tileColor,size: iconSizeLarge,),
             ),
           ),
         ),
@@ -75,3 +77,4 @@ class ProfileListTile extends StatelessWidget {
     );
   }
 }
+

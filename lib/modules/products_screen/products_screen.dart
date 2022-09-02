@@ -32,7 +32,7 @@ class ProductsScreen extends StatelessWidget {
                 appBar: AppBar(
                   centerTitle: true,
                   title: Image.asset(
-                    ImagesInAssets.logo,
+                    ImagesInAssets.logoImage,
                     width: 100,
                   ),
                 ),
@@ -43,7 +43,7 @@ class ProductsScreen extends StatelessWidget {
                 appBar: AppBar(
                   centerTitle: true,
                   title: Image.asset(
-                    ImagesInAssets.logo,
+                    ImagesInAssets.logoImage,
                     width: 100,
                   ),
                 ),
@@ -53,7 +53,7 @@ class ProductsScreen extends StatelessWidget {
               appBar: AppBar(
                 centerTitle: true,
                 title: Image.asset(
-                  ImagesInAssets.logo,
+                  ImagesInAssets.logoImage,
                   width: 100,
                 ),
               ),

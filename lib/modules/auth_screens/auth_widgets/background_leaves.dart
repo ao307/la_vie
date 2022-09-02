@@ -14,7 +14,7 @@ class BackLeaves extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional.topEnd,
               child: Image.asset(
-                ImagesInAssets.tree,
+                ImagesInAssets.treeImage,
               ),
             ),
             const Spacer(),
@@ -23,7 +23,7 @@ class BackLeaves extends StatelessWidget {
               child: RotatedBox(
                 quarterTurns: 90,
                 child: Image.asset(
-                  ImagesInAssets.tree,
+                  ImagesInAssets.treeImage,
                 ),
               ),
             ),

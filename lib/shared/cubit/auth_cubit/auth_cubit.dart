@@ -4,6 +4,8 @@ import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/auth_cubit/auth_states.dart';
 import 'package:la_vie/shared/cubit/cubit.dart';
+import 'package:la_vie/shared/cubit/products_cubit/products_cubit.dart';
+import 'package:la_vie/shared/cubit/profile_cubit/profile_cubit.dart';
 
 import '../../../models/login_model.dart';
 import '../../api/end_points.dart';
@@ -107,10 +109,14 @@ class AuthCubit extends Cubit<AuthStates> {
     //app box
     AppBox.box.delete(accessTokenBox);
     AppBox.box.delete(refreshTokenBox);
-    //
-    AppCubit.get(context).currentIndex=0;
-    //
     indexOfTap=1;
+    // AppCubit
+    AppCubit.get(context).currentIndex=0;
+    // ProfileCubit
+    ProfileCubit.get(context).profileDataModel=null;
+    // ProductsCubit
+    ProductsCubit.get(context).clearAllProductLists();
+    ProductsCubit.get(context).productsModel=null;
     emit(AnyState());
   }
 }

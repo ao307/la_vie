@@ -12,6 +12,7 @@ import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/cubit/auth_cubit/auth_cubit.dart';
 import 'package:la_vie/shared/cubit/cubit.dart';
 import 'package:la_vie/shared/cubit/products_cubit/products_cubit.dart';
+import 'package:la_vie/shared/cubit/profile_cubit/profile_cubit.dart';
 import 'package:la_vie/shared/cubit/states.dart';
 import 'package:la_vie/shared/themes/themes.dart';
 
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AppCubit()),
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => ProductsCubit()),
+        BlocProvider(create: (context) => ProfileCubit()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},

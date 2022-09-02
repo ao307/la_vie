@@ -1,175 +1,124 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:la_vie/modules/auth_screens/auth_screen.dart';
+import 'package:la_vie/modules/profile_screen/profile_widgets/images_and_profile_name.dart';
+import 'package:la_vie/modules/profile_screen/profile_widgets/point_container.dart';
 import 'package:la_vie/modules/profile_screen/profile_widgets/profile_list_tile.dart';
 import 'package:la_vie/shared/components/constants.dart';
+import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/auth_cubit/auth_cubit.dart';
-import 'package:la_vie/shared/cubit/cubit.dart';
-import 'package:la_vie/shared/cubit/states.dart';
 
+import '../../shared/components/widgets.dart';
+import '../../shared/cubit/profile_cubit/profile_cubit.dart';
+import '../../shared/cubit/profile_cubit/profile_states.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const faceImage =
-        "https://scontent-mxp2-1.xx.fbcdn.net/v/t39.30808-6/296713968_1666376990410753_1713043769992761297_n.jpg?stp=dst-jpg_p843x403&_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH0Gws1y3I-jpPlCrS_t-l2EW7cYKL6kgQRbtxgovqSBOu5faBFSD_ETXkKMdWVpXVp5aOWZcbSLt46L2qS80nD&_nc_ohc=6qTrHOS-WdsAX-oI_bT&_nc_ht=scontent-mxp2-1.xx&oh=00_AT-ja6x0R6gy7sf8qvTKOpJt7MFYolxz9zY2WPf3NsaqZA&oe=631479DD";
+    const faceImage = "";
+    final ProfileCubit profileCubit = ProfileCubit.get(context);
 
-    return BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Scaffold(
-          body: Stack(
-            children: [
-              SizedBox(
-                height: screenH(context) * .42,
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                            faceImage,
+    return FutureBuilder(
+      future: profileCubit.getProfileData(),
+      builder: (context, snapshot) {
+        return BlocConsumer<ProfileCubit, ProfileStates>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            final profileModel = profileCubit.profileDataModel;
+            if (snapshot.connectionState == ConnectionState.waiting &&
+                profileModel == null) {
+              return const LoadingPage();
+            } else if (snapshot.hasError || profileModel == null) {
+              return const ErrorPage();
+            }
+            return Scaffold(
+              body: Stack(
+                children: [
+                  SizedBox(
+                    height: screenH(context) * .42,
+                    child: ImagesAndProfileImage(
+                      profileImage: profileModel.data!.imageUrl,
+                      profileName:
+                          "${profileModel.data!.firstName} ${profileModel.data!.lastName}",
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: screenH(context) * .62,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: const BorderRadiusDirectional.only(
+                          topStart: Radius.circular(borderRadiusLarge),
+                          topEnd: Radius.circular(borderRadiusLarge),
+                        ),
+                      ),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.only(
+                            bottom: paddingLarge * 4,
+                            top: paddingLarge * 1.5,
+                            start: paddingMedium,
+                            end: paddingMedium,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              //
+                              PointsContainer(
+                                text:
+                                    "you have ${profileModel.data!.userPoints ?? 0} points",
+                                image: ImagesInAssets.pointsImage,
+                              ),
+                              const SizedBox(
+                                height: paddingMedium,
+                              ),
+                              Text(
+                                'edit profile'.tr().toTitleCase(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: textSizeLarge,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: paddingMedium,
+                              ),
+                              const ProfileListTile(
+                                title: "change name",
+                                leadingIcon: IconlyBroken.edit,
+                              ),
+                              // orders
+                              const ProfileListTile(
+                                title: "change email",
+                                leadingIcon: IconlyBroken.edit,
+                              ),
+                              // logout
+                              ProfileListTile(
+                                title: "logout",
+                                leadingIcon: IconlyBroken.logout,
+                                onTap: () {
+                                  AuthCubit.get(context).logout(context);
+                                  navigateAndFinish(
+                                    context: context,
+                                    widget: const AuthScreen(),
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    Container(
-                      color: Colors.black.withOpacity(.6),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: paddingLarge),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CircleAvatar(
-                            radius: 60,
-                            backgroundImage: CachedNetworkImageProvider(
-                              faceImage,
-                            ),
-                          ),
-                          Text(
-                            'Ali Ashraf'.toTitleCase(),
-                            style: const TextStyle(
-                              fontSize: textSizeLarge,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: screenH(context) * .62,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    borderRadius: const BorderRadiusDirectional.only(
-                      topStart: Radius.circular(borderRadiusLarge),
-                      topEnd: Radius.circular(borderRadiusLarge),
-                    ),
                   ),
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        bottom: paddingLarge * 4,
-                        top: paddingMedium,
-                        start: paddingMedium,
-                        end: paddingMedium,
-                      ),
-                      child: Column(
-                        children: [
-                          const ProfileListTile(
-                            title: "address",
-                            subTitle: "34 st.awlad sokar",
-                            leadingIcon: IconlyBroken.location,
-                          ),
-                          // orders
-                          const ProfileListTile(
-                            title: "orders",
-                            leadingIcon: IconlyBroken.wallet,
-                          ),
-                          // wishlist
-                          const ProfileListTile(
-                            title: "wishlist",
-                            leadingIcon: IconlyBroken.heart,
-                          ),
-                          // viewed
-                          const ProfileListTile(
-                            title: "viewed",
-                            leadingIcon: IconlyBroken.show,
-                          ),
-                          // dark mode
-                          ProfileListTile(
-                            title: "dark mode",
-                            subTitle: AppCubit.isDark == true ? "on" : "off",
-                            leadingIcon: Icons.light_mode_outlined,
-                            onTap: () {
-                              cubit(context).changeThem();
-                            },
-                          ),
-                          // language
-                          ProfileListTile(
-                            title: "language",
-                            subTitle: context.locale.toString() == 'ar_EG'
-                                ? 'العربية'
-                                : 'english',
-                            leadingIcon: Icons.language_outlined,
-                            onTap: () {
-                              if (context.locale.toString() == 'ar_EG') {
-                                context.setLocale(
-                                  const Locale(
-                                    'en',
-                                    'US',
-                                  ),
-                                );
-                              } else {
-                                context.setLocale(
-                                  const Locale(
-                                    'ar',
-                                    'EG',
-                                  ),
-                                );
-                              }
-                              cubit(context).changeIndex(3);
-                            },
-                          ),
-                          // about us
-                          const ProfileListTile(
-                            title: "about us",
-                            leadingIcon: IconlyBroken.lock,
-                          ),
-                          // logout
-                          ProfileListTile(
-                            title: "logout",
-                            leadingIcon: IconlyBroken.logout,
-                            onTap: () {
-                              AuthCubit.get(context).logout(context);
-                              navigateAndFinish(
-                                context: context,
-                                widget: const AuthScreen(),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

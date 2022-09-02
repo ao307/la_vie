@@ -35,7 +35,7 @@ class ErrorPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(ImagesInAssets.emptyFile),
+            Image.asset(ImagesInAssets.emptyFileImage),
             const SizedBox(height: paddingSmall),
             Text(
               'ooops!'.tr().toCapitalized(),
@@ -78,7 +78,7 @@ class EmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(ImagesInAssets.emptyFile),
+        Image.asset(ImagesInAssets.emptyFileImage),
         const SizedBox(height: paddingSmall),
         Text(
           '$title!'.tr().toCapitalized(),
