@@ -57,3 +57,5 @@ const plantsErrorImage =
     "https://cdn-icons-png.flaticon.com/128/3200/3200085.png";
 const toolsErrorImage =
     "https://cdn-icons-png.flaticon.com/128/3057/3057120.png";
+
+const errorProfileImage="https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg";
