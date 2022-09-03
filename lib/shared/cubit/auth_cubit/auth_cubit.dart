@@ -4,6 +4,7 @@ import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/auth_cubit/auth_states.dart';
 import 'package:la_vie/shared/cubit/cubit.dart';
+import 'package:la_vie/shared/cubit/forums_cubit/forums_cubit.dart';
 import 'package:la_vie/shared/cubit/products_cubit/products_cubit.dart';
 import 'package:la_vie/shared/cubit/profile_cubit/profile_cubit.dart';
 
@@ -47,12 +48,9 @@ class AuthCubit extends Cubit<AuthStates> {
         "email": loginEmailController.text,
         "password": loginPasswordController.text
       },
-    ).then((value) {
+    ).then((value) async {
       loginModel = LoginModel.fromJson(value.data);
-      accessTokenConst=loginModel!.data!.accessToken;
-      refreshTokenConst=loginModel!.data!.refreshToken;
-      AppBox.box.put(accessTokenBox, loginModel!.data!.accessToken);
-      AppBox.box.put(refreshTokenBox, loginModel!.data!.refreshToken);
+      await boxSaveLogin();
       emit(LoginSuccessState());
       //login
       loginPasswordController.clear();
@@ -84,10 +82,9 @@ class AuthCubit extends Cubit<AuthStates> {
         "email": signUpEmailController.text,
         "password": signUpPasswordController.text,
       },
-    ).then((value) {
+    ).then((value) async {
       loginModel = LoginModel.fromJson(value.data);
-      AppBox.box.put(accessTokenBox, loginModel!.data!.accessToken);
-      AppBox.box.put(refreshTokenBox, loginModel!.data!.refreshToken);
+      await boxSaveLogin();
       emit(SignUpSuccessState());
       //sign up
       firstNameController.clear();
@@ -98,25 +95,39 @@ class AuthCubit extends Cubit<AuthStates> {
     }).catchError((onError) {
       if (onError.toString().contains('Http status error [409]')) {
         showToast(msg: 'email already exists');
-      }else if (onError.toString().contains('Http status error [400]')) {
+      } else if (onError.toString().contains('Http status error [400]')) {
         showToast(msg: 'enter valid email address');
       }
       emit(LoginErrorState(onError.toString()));
     });
   }
 
+  Future<void> boxSaveLogin() async {
+    accessTokenConst = loginModel!.data!.accessToken;
+    refreshTokenConst = loginModel!.data!.refreshToken;
+    userIdConst = loginModel!.data!.user!.userId;
+    AppBox.box.put(accessTokenBox, loginModel!.data!.accessToken);
+    AppBox.box.put(refreshTokenBox, loginModel!.data!.refreshToken);
+    AppBox.box.put(userIdBox, loginModel!.data!.user!.userId);
+  }
+
   void logout(BuildContext context) {
     //app box
     AppBox.box.delete(accessTokenBox);
     AppBox.box.delete(refreshTokenBox);
-    indexOfTap=1;
+    indexOfTap = 1;
     // AppCubit
-    AppCubit.get(context).currentIndex=0;
+    final appCubit = AppCubit.get(context);
+    appCubit.currentIndex = 0;
     // ProfileCubit
-    ProfileCubit.get(context).profileDataModel=null;
+    final profileCubit = ProfileCubit.get(context);
+    profileCubit.profileDataModel = null;
     // ProductsCubit
-    ProductsCubit.get(context).clearAllProductLists();
-    ProductsCubit.get(context).productsModel=null;
+    final productCubit = ProductsCubit.get(context);
+    productCubit.clearAllProductLists();
+    productCubit.productsModel = null;
+    // ForumsCubit
+    ForumsCubit.get(context).clearForumsCubit();
     emit(AnyState());
   }
 }

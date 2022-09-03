@@ -19,22 +19,22 @@ class ProductsCubit extends Cubit<ProductsStates> {
   // ignore: type_annotate_public_apis
   static ProductsCubit get(context) => BlocProvider.of(context);
 
-  List<String> tapText = [
+  List<String> tapTextofProduct = [
     "all",
     "plants",
     "seeds",
     "tools",
   ];
-  List<Widget> bodyOfHome = [
+  List<Widget> bodyOfProduct = [
     const AllProductsBody(),
     const PlantsBody(),
     const SeedsBody(),
     const ToolsBody(),
   ];
-  int indexOfTap = 0;
+  int indexOfProductTap = 0;
 
   void changeIndexOfTap(int index) {
-    indexOfTap = index;
+    indexOfProductTap = index;
     emit(AnyState());
   }
 

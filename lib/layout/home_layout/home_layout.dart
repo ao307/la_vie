@@ -29,10 +29,11 @@ class HomeLayout extends StatelessWidget {
           bottomNavigationBar: AnimatedBottomNavigationBar(
             icons: const [
               FontAwesomeIcons.leaf,
-              FontAwesomeIcons.leaf,
-              FontAwesomeIcons.leaf,
-              FontAwesomeIcons.leaf,
+              FontAwesomeIcons.qrcode,
+              IconlyBold.notification,
+              IconlyBold.profile,
             ],
+            iconSize: 28,
             activeIndex: cubit(context).currentIndex,
             gapLocation: GapLocation.center,
             backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
@@ -50,6 +51,7 @@ class HomeLayout extends StatelessWidget {
           floatingActionButton: ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: FloatingActionButton(
+              heroTag: "homeLayout",
               onPressed: () {
                 navigateTo(context: context, widget: const ProductsScreen());
               },

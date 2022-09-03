@@ -6,7 +6,7 @@ import 'package:la_vie/shared/themes/colors.dart';
 const boxName = "boxName";
 const accessTokenBox = "accessToken";
 const refreshTokenBox = "refreshToken";
-const userId = "userId";
+const userIdBox = "userId";
 const isDarkBox = "isDarkBox";
 
 // TODO: TEXT SIZES
@@ -47,6 +47,7 @@ const arrowRightIcon = Icon(
 
 String? accessTokenConst;
 String? refreshTokenConst;
+String? userIdConst;
 
 // TODO: error images
 
@@ -58,4 +59,8 @@ const plantsErrorImage =
 const toolsErrorImage =
     "https://cdn-icons-png.flaticon.com/128/3057/3057120.png";
 
-const errorProfileImage="https://media.flaticon.com/dist/min/img/logo/flaticon_negative.svg";
+const errorProfileImage =
+    "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZXJyb3J8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60";
+
+const errorAvatarImage =
+    'https://res.cloudinary.com/lms07/image/upload/v1645954589/avatar/6214b94ad832b0549b436264_avatar1645954588291.png';
