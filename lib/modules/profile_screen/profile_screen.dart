@@ -20,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const faceImage = "";
     final ProfileCubit profileCubit = ProfileCubit.get(context);
 
     return FutureBuilder(

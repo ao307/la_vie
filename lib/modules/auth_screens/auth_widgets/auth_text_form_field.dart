@@ -14,6 +14,7 @@ class AuthTextFormField extends StatelessWidget {
   final String? labelText;
   final Widget? suffixIcon;
   final Widget? underWidget;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class AuthTextFormField extends StatelessWidget {
           obscureText: obscure ?? false,
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-
+          maxLines: maxLines,
           decoration: InputDecoration(
             // hintText: "$hintText".tr().toCapitalized(),
             errorMaxLines: 2,
@@ -75,5 +76,6 @@ class AuthTextFormField extends StatelessWidget {
     required this.labelText,
     this.suffixIcon,
     this.underWidget,
+    this.maxLines=1,
   }) : super(key: key);
 }

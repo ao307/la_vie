@@ -11,6 +11,7 @@ import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/components/widgets.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
+import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
 
@@ -38,7 +39,8 @@ class ProductsScreen extends StatelessWidget {
                 ),
               );
             } else if (snapshot.hasError ||
-                state is GetProductsDataErrorState) {
+                state is GetProductsDataErrorState)
+            {
               return ErrorPage(
                 appBar: AppBar(
                   centerTitle: true,
@@ -74,6 +76,7 @@ class ProductsScreen extends StatelessWidget {
                           width: paddingMedium,
                         ),
                         FloatingActionButton(
+                          heroTag: "productScreen",
                           onPressed: () {},
                           mini: true,
                           child: const FaIcon(
@@ -86,61 +89,10 @@ class ProductsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: paddingLarge),
                   Expanded(
-                    child: ContainedTabBarView(
-                      initialIndex: productScreenCubit.indexOfTap,
-                      tabBarProperties: TabBarProperties(
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        height: 40,
-                        isScrollable: true,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: paddingMedium),
-                        labelPadding: const EdgeInsets.symmetric(
-                          horizontal: paddingMedium,
-                        ),
-                        labelStyle: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                        ),
-                        indicator: BoxDecoration(
-                          border: Border.all(
-                            color: MyColors.cPrimary,
-                            width: 3,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(borderRadiusMedium),
-                          ),
-                        ),
-                        unselectedLabelColor: MyColors.cTextSubtitleLight,
-                      ),
-                      tabs: List.generate(
-                        productScreenCubit.tapText.length,
-                        (index) => Container(
-                          height: 100,
-                          alignment: AlignmentDirectional.center,
-                          padding: productScreenCubit.indexOfTap != index
-                              ? const EdgeInsets.symmetric(
-                                  horizontal: paddingLarge,
-                                )
-                              : EdgeInsets.zero,
-                          decoration: productScreenCubit.indexOfTap != index
-                              ? BoxDecoration(
-                                  color: MyColors.cTextSubtitleLight
-                                      .withOpacity(0.2),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(borderRadiusMedium),
-                                  ),
-                                )
-                              : null,
-                          child: Text(
-                            productScreenCubit.tapText[index]
-                                .tr()
-                                .toTitleCase(),
-                          ),
-                        ),
-                      ),
-                      views: List.generate(
-                        productScreenCubit.tapText.length,
-                        (index) => productScreenCubit.bodyOfHome[index],
-                      ),
+                    child: TapBarReUse(
+                      initialIndex: productScreenCubit.indexOfProductTap,
+                      listOfTabsText: productScreenCubit.tapTextofProduct,
+                      listOfViewsBody: productScreenCubit.bodyOfProduct,
                       onChange: (index) =>
                           productScreenCubit.changeIndexOfTap(index),
                     ),

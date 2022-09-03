@@ -1,5 +1,7 @@
+
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:la_vie/shared/bloc_observer.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/cubit/auth_cubit/auth_cubit.dart';
 import 'package:la_vie/shared/cubit/cubit.dart';
+import 'package:la_vie/shared/cubit/forums_cubit/forums_cubit.dart';
 import 'package:la_vie/shared/cubit/products_cubit/products_cubit.dart';
 import 'package:la_vie/shared/cubit/profile_cubit/profile_cubit.dart';
 import 'package:la_vie/shared/cubit/states.dart';
@@ -27,7 +30,8 @@ Future<void> startScreen() async {
   //
   refreshTokenConst = await box.get(refreshTokenBox);
   accessTokenConst = await box.get(accessTokenBox);
-  if (refreshTokenConst != null && accessTokenConst != null) {
+  userIdConst = await box.get(userIdBox);
+  if (refreshTokenConst != null && accessTokenConst != null&&userIdConst!=null) {
     startScreenDoctor = HomeLayout();
   }
 }
@@ -41,29 +45,34 @@ void main() async {
   await startScreen();
   await DioHelper.init();
   Bloc.observer = MyBlocObserver();
- // TODO: preview mode
-  runApp(
+  EasyLocalization.logger.enableBuildModes = [];
+  // TODO: preview mode
+  if (kDebugMode) {
+    runApp(
       DevicePreview(
-        builder:(context)=> EasyLocalization(
-          supportedLocales: const [
-            Locale('en', 'US'),
-            Locale('ar', 'EG'),
-          ],
-          path: 'assets/translation',
-          child: const MyApp(),
-        ),
+        builder: (context) =>
+            EasyLocalization(
+              supportedLocales: const [
+                Locale('en', 'US'),
+                Locale('ar', 'EG'),
+              ],
+              path: 'assets/translation',
+              child: const MyApp(),
+            ),
       ),
     );
-  // runApp(
-  //   EasyLocalization(
-  //     supportedLocales: const [
-  //       Locale('en', 'US'),
-  //       Locale('ar', 'EG'),
-  //     ],
-  //     path: 'assets/translation',
-  //     child: const MyApp(),
-  //   ),
-  // );
+  } else {
+    runApp(
+      EasyLocalization(
+        supportedLocales: const [
+          Locale('en', 'US'),
+          Locale('ar', 'EG'),
+        ],
+        path: 'assets/translation',
+        child: const MyApp(),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -78,13 +87,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => ProductsCubit()),
         BlocProvider(create: (context) => ProfileCubit()),
+        BlocProvider(create: (context) => ForumsCubit()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
-           useInheritedMediaQuery: true,
-           builder: DevicePreview.appBuilder,
+            useInheritedMediaQuery: true,
+            builder: DevicePreview.appBuilder,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

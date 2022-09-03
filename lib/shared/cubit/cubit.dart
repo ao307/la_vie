@@ -2,12 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:la_vie/modules/leaf_screen/leaf_screen.dart';
 import 'package:la_vie/modules/profile_screen/profile_screen.dart';
 import 'package:la_vie/shared/api/local/app_box.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/cubit/states.dart';
 
+import '../../modules/forums_screen/forums_screen.dart';
 import '../../modules/notification_screen/notification_screen.dart';
 import '../../modules/scan_screen/scan_screen.dart';
 
@@ -16,9 +16,8 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
-
   List<Widget> screens = [
-    const LeafScreen(),
+    const ForumsScreen(),
     const ScanScreen(),
     const NotificationScreen(),
     const ProfileScreen(),
@@ -37,5 +36,4 @@ class AppCubit extends Cubit<AppStates> {
     currentIndex = index;
     emit(AppChangeBottomNavBarState());
   }
-
 }

@@ -179,8 +179,8 @@ void showMyDialog({
   ).show();
 }
 
-String getTimeDifferenceFromNow(DateTime dateTime) {
-  final Duration difference = DateTime.now().difference(dateTime);
+String getTimeDifferenceFromNow(String dateTime) {
+  final Duration difference = DateTime.now().difference(DateTime.parse(dateTime));
   if (difference.inSeconds < 5) {
     return "Just now";
   } else if (difference.inMinutes < 1) {

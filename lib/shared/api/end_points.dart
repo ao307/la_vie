@@ -6,3 +6,7 @@ const plantsEP = '/api/v1/plants';
 const toolsEP = '/api/v1/tools';
 const productsEP = '/api/v1/products';
 const currentUserDataEP = '/api/v1/user/me';
+const allForumsDataEP = '/api/v1/forums';
+const myForumsDataEP = '/api/v1/forums/me';
+const commentForumsEP = '/api/v1/forums/:forumId/comment';
+const likeForumsEP = '/api/v1/forums/:forumId/like';

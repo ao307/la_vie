@@ -42,7 +42,7 @@ class DioHelper {
       'Authorization': "Bearer $token",
       'Content-Type': 'application/json'
     };
-    return dio!.post(endPoint, queryParameters: query, data: data);
+    return dio!.post(endPoint, queryParameters: query, data: data,);
   }
 
   static Future<Response> putData({

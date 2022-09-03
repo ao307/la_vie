@@ -15,7 +15,7 @@ class PlantsBody extends StatelessWidget {
     return BlocConsumer<ProductsCubit, ProductsStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        if(productScreenCubit.productPlant.isEmpty){
+        if(productScreenCubit.productPlant.isNotEmpty){
           return const EmptyWidget();
         }
         return GridView.builder(

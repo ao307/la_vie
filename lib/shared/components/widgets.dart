@@ -35,7 +35,10 @@ class ErrorPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(ImagesInAssets.emptyFileImage),
+            Image.asset(
+              ImagesInAssets.emptyFileImage,
+              width: screenW(context) * .5,
+            ),
             const SizedBox(height: paddingSmall),
             Text(
               'ooops!'.tr().toCapitalized(),
@@ -70,22 +73,34 @@ class ErrorPage extends StatelessWidget {
 }
 
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({Key? key, this.title}) : super(key: key);
+  const EmptyWidget({Key? key, this.title, this.subTitle}) : super(key: key);
   final String? title;
+  final String? subTitle;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(ImagesInAssets.emptyFileImage),
+        Image.asset(
+          ImagesInAssets.emptyFileImage,
+          width: screenW(context) * .5,
+        ),
         const SizedBox(height: paddingSmall),
         Text(
-          '$title!'.tr().toCapitalized(),
+          '${title ?? 'empty'}!'.tr().toCapitalized(),
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: textSizeLarge,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          (subTitle ?? "create one and go on.").tr().toCapitalized(),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: MyColors.cTextSubtitleLight.withOpacity(1),
           ),
         ),
       ],
@@ -216,3 +231,5 @@ class SideNotification extends StatelessWidget {
     );
   }
 }
+
+// Tab
