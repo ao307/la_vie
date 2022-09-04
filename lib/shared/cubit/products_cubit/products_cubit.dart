@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/models/products_model.dart';
+import 'package:la_vie/shared/api/local/app_box.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/products_cubit/products_states.dart';
 
+import '../../../models/add_to_cart_model.dart';
 import '../../../modules/products_screen/products_body/all_body.dart';
 import '../../../modules/products_screen/products_body/plants_body.dart';
 import '../../../modules/products_screen/products_body/seeds_body.dart';
@@ -19,7 +21,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
   // ignore: type_annotate_public_apis
   static ProductsCubit get(context) => BlocProvider.of(context);
 
-  List<String> tapTextofProduct = [
+  List<String> tapTextOfProduct = [
     "all",
     "plants",
     "seeds",
@@ -37,73 +39,6 @@ class ProductsCubit extends Cubit<ProductsStates> {
     indexOfProductTap = index;
     emit(AnyState());
   }
-
-  // ordered run function
-  // SeedsModel? seedsModel;
-  //
-  // Future<void> getSeedsFirst() async {
-  //   emit(GetProductsDataLoadingState());
-  //   await DioHelper.getData(
-  //     url: seedsEP,
-  //     token: accessTokenConst,
-  //   ).then((value) async {
-  //     seedsModel = SeedsModel.fromJson(value.data);
-  //     seedsCount.clear();
-  //     for (final element in seedsModel!.data!) {
-  //       seedsCount.add(0);
-  //     }
-  //     await getPlantsSecond();
-  //   }).catchError((onError) {
-  //     if (kDebugMode) {
-  //       showToast(msg: 'error on seeds');
-  //       printFullText(onError.toString());
-  //     }
-  //     emit(GetProductsDataErrorState(onError.toString()));
-  //   });
-  // }
-  //
-  // // TODO: All plants functions
-  // PlantsModel? plantsModel;
-  //
-  // Future<void> getPlantsSecond() async {
-  //   await DioHelper.getData(
-  //     url: plantsEP,
-  //     token: accessTokenConst,
-  //   ).then((value) async {
-  //     plantsModel = PlantsModel.fromJson(value.data);
-  //     plantsCount.clear();
-  //     for (final element in plantsModel!.data!) {
-  //       plantsCount.add(0);
-  //     }
-  //     await getToolsThird();
-  //   }).catchError((onError) {
-  //     if (kDebugMode) {
-  //       showToast(msg: 'error on plants');
-  //     }
-  //     emit(GetProductsDataErrorState(onError.toString()));
-  //   });
-  // }
-  //
-  // ToolsModel? toolsModel;
-  //
-  // Future<void> getToolsThird() async {
-  //   await DioHelper.getData(
-  //     url: toolsEP,
-  //     token: accessTokenConst,
-  //   ).then((value) async {
-  //     toolsModel = ToolsModel.fromJson(value.data);
-  //     toolsCount.clear();
-  //     for (final element in toolsModel!.data!) {
-  //       toolsCount.add(0);
-  //     }
-  //     emit(GetProductsDataSuccessState());
-  //   }).catchError((onError) {
-  //     if (kDebugMode) {
-  //       showToast(msg: 'error on tools');
-  //     }
-  //     emit(GetProductsDataErrorState(onError.toString()));
-  //   });
-  // }
 
   ProductsModel? productsModel;
   List<ProductData> productPlant = [];
@@ -224,4 +159,47 @@ class ProductsCubit extends Cubit<ProductsStates> {
     }
     emit(AnyState());
   }
+
+  // TODO: add to cart functions
+  List<DataCard> listOfDataCart = [];
+  List<int> cartCount = [];
+  int totalCart = 0;
+
+  Future<void> addToCart(DataCard data) async {
+    listOfDataCart.add(data);
+    cartCount.clear();
+    for (final ele in listOfDataCart) {
+      cartCount.add(ele.cartCount!);
+    }
+    await AppBox.box.put(addToCartBox, listOfDataCart.toString());
+    showToast(msg: 'added successfully');
+    emit(GetCartSuccess());
+  }
+
+  void addDataCartFun(int index) {
+    if (cartCount[index] < 9) {
+      cartCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusDataCartFun(int index) {
+    if (cartCount[index] > 1) {
+      cartCount[index]--;
+    }
+    emit(AnyState());
+  }
+
+  void clearItemCart(int index) {
+    cartCount.removeAt(index);
+    listOfDataCart.removeAt(index);
+    emit(AnyState());
+  }
+// Future<void> getLocalCart() async {
+//   if (await AppBox.box.get(addToCartBox) != null) {
+//     listOfDataCart = await AppBox.box.get(addToCartBox);
+//   }
+//   showToast(msg: 'get successfully');
+//   emit(GetCartSuccess());
+// }
 }

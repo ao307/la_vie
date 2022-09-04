@@ -1,4 +1,3 @@
-
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
@@ -31,7 +30,9 @@ Future<void> startScreen() async {
   refreshTokenConst = await box.get(refreshTokenBox);
   accessTokenConst = await box.get(accessTokenBox);
   userIdConst = await box.get(userIdBox);
-  if (refreshTokenConst != null && accessTokenConst != null&&userIdConst!=null) {
+  if (refreshTokenConst != null &&
+      accessTokenConst != null &&
+      userIdConst != null) {
     startScreenDoctor = HomeLayout();
   }
 }
@@ -50,15 +51,14 @@ void main() async {
   if (kDebugMode) {
     runApp(
       DevicePreview(
-        builder: (context) =>
-            EasyLocalization(
-              supportedLocales: const [
-                Locale('en', 'US'),
-                Locale('ar', 'EG'),
-              ],
-              path: 'assets/translation',
-              child: const MyApp(),
-            ),
+        builder: (context) => EasyLocalization(
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('ar', 'EG'),
+          ],
+          path: 'assets/translation',
+          child: const MyApp(),
+        ),
       ),
     );
   } else {
@@ -81,7 +81,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-
       providers: [
         BlocProvider(create: (context) => AppCubit()),
         BlocProvider(create: (context) => AuthCubit()),

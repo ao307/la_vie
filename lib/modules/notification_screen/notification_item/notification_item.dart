@@ -38,31 +38,31 @@ class NotificationItem extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(
-                height: paddingMedium,
-              ),
-              IntrinsicHeight(
-                child: Row(
-                  children: [
-                    const SideNotification(),
-                    const SizedBox(
-                      width: paddingSmall,
-                    ),
-                    Expanded(
-                      child: Text(
-                        '" In a world where everyone else is learning, if you don’t take your learning seriously you will fall behind."'
-                            .toCapitalized(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: paddingSmall,
-              ),
+              // const SizedBox(
+              //   height: paddingMedium,
+              // ),
+              // IntrinsicHeight(
+              //   child: Row(
+              //     children: [
+              //       const SideNotification(),
+              //       const SizedBox(
+              //         width: paddingSmall,
+              //       ),
+              //       Expanded(
+              //         child: Text(
+              //           '" In a world where everyone else is learning, if you don’t take your learning seriously you will fall behind."'
+              //               .toCapitalized(),
+              //           style: const TextStyle(
+              //             fontWeight: FontWeight.w600,
+              //           ),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: paddingSmall,
+              // ),
               Text(
                 getTimeDifferenceFromNow(
                   userNotification!.createdAt!,

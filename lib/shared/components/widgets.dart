@@ -95,12 +95,15 @@ class EmptyWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          (subTitle ?? "create one and go on.").tr().toCapitalized(),
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: MyColors.cTextSubtitleLight.withOpacity(1),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal:paddingMedium),
+          child: Text(
+            (subTitle ?? "create one and go on.").tr().toCapitalized(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: MyColors.cTextSubtitleLight.withOpacity(1),
+            ),
           ),
         ),
       ],
