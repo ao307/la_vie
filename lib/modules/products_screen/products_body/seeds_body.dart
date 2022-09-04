@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/shared/components/constants.dart';
+import '../../../models/add_to_cart_model.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../../shared/cubit/products_cubit/products_states.dart';
@@ -27,10 +28,19 @@ class SeedsBody extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
 
             return SeedsGridItem(
-              data: productScreenCubit.productSeed[index],
               count: productScreenCubit.seedsCount[index],
+              data: productScreenCubit.productSeed[index],
               addFun: () => productScreenCubit.addSeedsFun(index),
               minusFun: () => productScreenCubit.minusSeedsFun(index),
+              addToCart: () => productScreenCubit.addToCart(
+                DataCard(
+                  cartCount: productScreenCubit.plantsCount[index],
+                  imageUrl: productScreenCubit.productSeed[index].imageUrl,
+                  name: productScreenCubit.productSeed[index].name,
+                  price: productScreenCubit.productSeed[index].price,
+                  productId: productScreenCubit.productSeed[index].productId,
+                ),
+              ),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

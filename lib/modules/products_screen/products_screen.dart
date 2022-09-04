@@ -14,6 +14,7 @@ import 'package:la_vie/shared/themes/colors.dart';
 import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
+import '../cart_screen/cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({Key? key}) : super(key: key);
@@ -77,7 +78,9 @@ class ProductsScreen extends StatelessWidget {
                         ),
                         FloatingActionButton(
                           heroTag: "productScreen",
-                          onPressed: () {},
+                          onPressed: () {
+                            navigateTo(context: context, widget: const MyCartScreen());
+                          },
                           mini: true,
                           child: const FaIcon(
                             IconlyLight.buy,
@@ -91,7 +94,7 @@ class ProductsScreen extends StatelessWidget {
                   Expanded(
                     child: TapBarReUse(
                       initialIndex: productScreenCubit.indexOfProductTap,
-                      listOfTabsText: productScreenCubit.tapTextofProduct,
+                      listOfTabsText: productScreenCubit.tapTextOfProduct,
                       listOfViewsBody: productScreenCubit.bodyOfProduct,
                       onChange: (index) =>
                           productScreenCubit.changeIndexOfTap(index),

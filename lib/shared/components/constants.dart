@@ -8,6 +8,7 @@ const accessTokenBox = "accessToken";
 const refreshTokenBox = "refreshToken";
 const userIdBox = "userId";
 const isDarkBox = "isDarkBox";
+const addToCartBox = "addToCartBox";
 
 // TODO: TEXT SIZES
 const textSizeLarge = 20.0;

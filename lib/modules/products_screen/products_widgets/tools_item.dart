@@ -105,7 +105,11 @@ class ToolsGridItem extends StatelessWidget {
                     height: paddingSmall,
                   ),
                   AuthButton(
-                    onPressed: addToCart,
+                    onPressed: count != 0
+                        ? addToCart
+                        : () {
+                            showToast(msg: 'select count');
+                          },
                     text: 'add to cart',
                     height: 40,
                   ),

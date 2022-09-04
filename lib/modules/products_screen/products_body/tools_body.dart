@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/shared/components/constants.dart';
 
+import '../../../models/add_to_cart_model.dart';
 import '../../../shared/components/widgets.dart';
 import '../../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../../shared/cubit/products_cubit/products_states.dart';
@@ -27,10 +28,19 @@ class ToolsBody extends StatelessWidget {
           ),
           itemBuilder: (BuildContext context, int index) {
             return ToolsGridItem(
-              data: productScreenCubit.productTool[index],
               count: productScreenCubit.toolsCount[index],
+              data: productScreenCubit.productTool[index],
               addFun: () => productScreenCubit.addToolsFun(index),
               minusFun: () => productScreenCubit.minusToolsFun(index),
+              addToCart: () => productScreenCubit.addToCart(
+                DataCard(
+                  cartCount: productScreenCubit.plantsCount[index],
+                  imageUrl: productScreenCubit.productTool[index].imageUrl,
+                  name: productScreenCubit.productTool[index].name,
+                  price: productScreenCubit.productTool[index].price,
+                  productId: productScreenCubit.productTool[index].productId,
+                ),
+              ),
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

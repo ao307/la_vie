@@ -1,92 +1,11 @@
 {
-  "type": "Success",
-  "message": "User fetched successfully",
-  "data": {
-    "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-    "firstName": "ali",
-    "lastName": "ashraf",
-    "email": "ass@gm.com",
-    "imageUrl": "https://i.ibb.co/QNY4y27/a.jpg",
-    "role": "user",
-    "UserPoints": 30,
-    "UserNotification": [
-      {
-        "notificationId": "2c8c9331-091e-4e51-bab9-302fcdab6b23",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf liked your post",
-        "createdAt": "2022-09-03T17:26:15.543Z"
-      },
-      {
-        "notificationId": "34d02e9e-6340-47ad-b048-c06c1cf09dba",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf commented on your post",
-        "createdAt": "2022-09-03T19:25:03.926Z"
-      },
-      {
-        "notificationId": "356d7d98-d574-45b4-94ac-3763f8de73ec",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "lol lol liked your post",
-        "createdAt": "2022-09-03T18:23:02.800Z"
-      },
-      {
-        "notificationId": "4f41033d-db25-4d83-853d-b78d2d847883",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ali liked your post",
-        "createdAt": "2022-09-03T18:54:19.587Z"
-      },
-      {
-        "notificationId": "50c7b1cd-8716-4b6e-bf99-bc10be7f0e39",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf liked your post",
-        "createdAt": "2022-09-03T16:28:19.460Z"
-      },
-      {
-        "notificationId": "6f297bc1-fbbf-43e3-9405-e1d0bb8fc07e",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf liked your post",
-        "createdAt": "2022-09-03T17:26:18.425Z"
-      },
-      {
-        "notificationId": "ae9b4372-52cd-4739-839b-95bb3b50152e",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf commented on your post",
-        "createdAt": "2022-09-03T19:25:05.168Z"
-      },
-      {
-        "notificationId": "bbed5323-b795-4eb5-bca7-6ce0f600a747",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf commented on your post",
-        "createdAt": "2022-09-03T19:25:02.261Z"
-      },
-      {
-        "notificationId": "bea92fa0-d0c6-47fe-b943-f21747c363df",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf liked your post",
-        "createdAt": "2022-09-03T18:47:28.838Z"
-      },
-      {
-        "notificationId": "e3249069-6a29-439f-b0ae-1518a5dcedfa",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf liked your post",
-        "createdAt": "2022-09-03T17:54:41.089Z"
-      },
-      {
-        "notificationId": "f3c727a3-8c30-45c9-bfaa-597f2ca7c359",
-        "userId": "2e4b988f-f87c-43f2-8ae3-ddab0a99bbad",
-        "imageUrl": "",
-        "message": "ali ashraf liked your post",
-        "createdAt": "2022-09-03T17:18:58.806Z"
-      }
-    ]
-  }
+  "dataCard": [
+    {
+      "productId": "1b0f2343-0270-4d3d-ba83-2a772e115dc9",
+      "name": "Glory",
+      "imageUrl": "/uploads/1b0f2343-0270-4d3d-ba83-2a772e115dc9.jpg",
+      "cartCount": 10,
+      "price": 800
+    }
+  ]
 }
