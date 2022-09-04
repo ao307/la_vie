@@ -82,9 +82,9 @@ String? validateEmail(String? value) {
 String? validateName(String? value, String? order) {
   const String pattern = r"^\s*([A-Za-z]{1,}([\.,] |[-']|))+[A-Za-z]+\.?\s*$";
   final RegExp regex = RegExp(pattern);
-  if (value == null || value.isEmpty) {
+  if (value == null || value.isEmpty ) {
     return 'enter your $order name'.tr().toCapitalized();
-  } else if (!regex.hasMatch(value)) {
+  } else if (!regex.hasMatch(value)|| value.length < 3) {
     return 'enter a valid name'.tr().toCapitalized();
   } else {
     return null;
@@ -94,13 +94,14 @@ String? validateName(String? value, String? order) {
 String? validatePassword(
   String? value,
 ) {
-  const String pattern =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
+  const String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
   final RegExp regex = RegExp(pattern);
   if (value!.isEmpty) {
     return 'enter your password'.tr().toCapitalized();
   } else if (!regex.hasMatch(value)) {
-    return 'password should be 8 digit contains at least one capital and lower character'.tr().toCapitalized();
+    return 'password should be 8 digit contains at least one capital and lower character'
+        .tr()
+        .toCapitalized();
   }
   return null;
 }
@@ -180,7 +181,8 @@ void showMyDialog({
 }
 
 String getTimeDifferenceFromNow(String dateTime) {
-  final Duration difference = DateTime.now().difference(DateTime.parse(dateTime));
+  final Duration difference =
+      DateTime.now().difference(DateTime.parse(dateTime));
   if (difference.inSeconds < 5) {
     return "Just now";
   } else if (difference.inMinutes < 1) {

@@ -5,7 +5,6 @@ import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
 import '../../../models/profile_data_model.dart';
-import '../../../shared/components/widgets.dart';
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({Key? key, this.userNotification}) : super(key: key);

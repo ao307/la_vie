@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
-import 'package:la_vie/shared/components/widgets.dart';
 import 'package:la_vie/shared/themes/colors.dart';
 
 class ProfileImageName extends StatelessWidget {

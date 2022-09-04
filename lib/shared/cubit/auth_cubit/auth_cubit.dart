@@ -126,6 +126,9 @@ class AuthCubit extends Cubit<AuthStates> {
     final productCubit = ProductsCubit.get(context);
     productCubit.clearAllProductLists();
     productCubit.productsModel = null;
+    productCubit.listOfDataCart.clear();
+    productCubit.cartCount.clear();
+    productCubit.totalCart = 0;
     // ForumsCubit
     ForumsCubit.get(context).clearForumsCubit();
     emit(AnyState());

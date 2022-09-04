@@ -73,7 +73,7 @@ class CartItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${model!.price! * counter! ?? ''} EGP'.tr(),
+                    '${model!.price! * counter!} EGP'.tr(),
                     style: const TextStyle(
                       color: MyColors.cPrimary,
                       fontWeight: FontWeight.bold,
