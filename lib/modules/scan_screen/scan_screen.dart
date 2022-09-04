@@ -21,10 +21,7 @@ class ScanScreen extends StatelessWidget {
           ),
           body: ListView(
             padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
-            children: [
 
-
-            ],
           ),
         );
       },

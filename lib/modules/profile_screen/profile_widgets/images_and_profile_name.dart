@@ -5,7 +5,7 @@ import 'package:la_vie/shared/components/reuse_functions.dart';
 
 class ImagesAndProfileImage extends StatelessWidget {
   const ImagesAndProfileImage(
-      {Key? key, required this.profileImage, required this.profileName})
+      {Key? key, required this.profileImage, required this.profileName,})
       : super(key: key);
   final String? profileImage;
   final String? profileName;

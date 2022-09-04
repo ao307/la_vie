@@ -1,5 +1,3 @@
-import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -9,7 +7,6 @@ import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/components/widgets.dart';
-import 'package:la_vie/shared/themes/colors.dart';
 
 import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/cubit/products_cubit/products_cubit.dart';

@@ -1,12 +1,13 @@
 class ForumsModel {
   ForumsModel({
-      String? type, 
-      String? message, 
-      List<ForumData>? data,}){
+    String? type,
+    String? message,
+    List<ForumData>? data,
+  }) {
     _type = type;
     _message = message;
     _data = data;
-}
+  }
 
   ForumsModel.fromJson(dynamic json) {
     _type = json['type'];
@@ -18,18 +19,26 @@ class ForumsModel {
       });
     }
   }
+
   String? _type;
   String? _message;
   List<ForumData>? _data;
-ForumsModel copyWith({  String? type,
-  String? message,
-  List<ForumData>? data,
-}) => ForumsModel(  type: type ?? _type,
-  message: message ?? _message,
-  data: data ?? _data,
-);
+
+  ForumsModel copyWith({
+    String? type,
+    String? message,
+    List<ForumData>? data,
+  }) =>
+      ForumsModel(
+        type: type ?? _type,
+        message: message ?? _message,
+        data: data ?? _data,
+      );
+
   String? get type => _type;
+
   String? get message => _message;
+
   List<ForumData>? get data => _data;
 
   Map<String, dynamic> toJson() {
@@ -41,19 +50,19 @@ ForumsModel copyWith({  String? type,
     }
     return map;
   }
-
 }
 
 class ForumData {
   ForumData({
-      String? forumId, 
-      String? title, 
-      String? description, 
-      String? imageUrl, 
-      String? userId, 
-      List<ForumLikes>? forumLikes, 
-      List<ForumComments>? forumComments, 
-      ForumUser? user,}){
+    String? forumId,
+    String? title,
+    String? description,
+    String? imageUrl,
+    String? userId,
+    List<ForumLikes>? forumLikes,
+    List<ForumComments>? forumComments,
+    ForumUser? user,
+  }) {
     _forumId = forumId;
     _title = title;
     _description = description;
@@ -62,7 +71,7 @@ class ForumData {
     _forumLikes = forumLikes;
     _forumComments = forumComments;
     _user = user;
-}
+  }
 
   ForumData.fromJson(dynamic json) {
     _forumId = json['forumId'];
@@ -84,6 +93,7 @@ class ForumData {
     }
     _user = json['user'] != null ? ForumUser.fromJson(json['user']) : null;
   }
+
   String? _forumId;
   String? _title;
   String? _description;
@@ -92,30 +102,42 @@ class ForumData {
   List<ForumLikes>? _forumLikes;
   List<ForumComments>? _forumComments;
   ForumUser? _user;
-ForumData copyWith({  String? forumId,
-  String? title,
-  String? description,
-  String? imageUrl,
-  String? userId,
-  List<ForumLikes>? forumLikes,
-  List<ForumComments>? forumComments,
-  ForumUser? user,
-}) => ForumData(  forumId: forumId ?? _forumId,
-  title: title ?? _title,
-  description: description ?? _description,
-  imageUrl: imageUrl ?? _imageUrl,
-  userId: userId ?? _userId,
-  forumLikes: forumLikes ?? _forumLikes,
-  forumComments: forumComments ?? _forumComments,
-  user: user ?? _user,
-);
+
+  ForumData copyWith({
+    String? forumId,
+    String? title,
+    String? description,
+    String? imageUrl,
+    String? userId,
+    List<ForumLikes>? forumLikes,
+    List<ForumComments>? forumComments,
+    ForumUser? user,
+  }) =>
+      ForumData(
+        forumId: forumId ?? _forumId,
+        title: title ?? _title,
+        description: description ?? _description,
+        imageUrl: imageUrl ?? _imageUrl,
+        userId: userId ?? _userId,
+        forumLikes: forumLikes ?? _forumLikes,
+        forumComments: forumComments ?? _forumComments,
+        user: user ?? _user,
+      );
+
   String? get forumId => _forumId;
+
   String? get title => _title;
+
   String? get description => _description;
+
   String? get imageUrl => _imageUrl;
+
   String? get userId => _userId;
+
   List<ForumLikes>? get forumLikes => _forumLikes;
+
   List<ForumComments>? get forumComments => _forumComments;
+
   ForumUser? get user => _user;
 
   Map<String, dynamic> toJson() {
@@ -136,36 +158,44 @@ ForumData copyWith({  String? forumId,
     }
     return map;
   }
-
 }
 
 class ForumUser {
   ForumUser({
-      String? firstName, 
-      String? lastName, 
-      String? imageUrl,}){
+    String? firstName,
+    String? lastName,
+    String? imageUrl,
+  }) {
     _firstName = firstName;
     _lastName = lastName;
     _imageUrl = imageUrl;
-}
+  }
 
   ForumUser.fromJson(dynamic json) {
     _firstName = json['firstName'];
     _lastName = json['lastName'];
     _imageUrl = json['imageUrl'];
   }
+
   String? _firstName;
   String? _lastName;
   String? _imageUrl;
-ForumUser copyWith({  String? firstName,
-  String? lastName,
-  String? imageUrl,
-}) => ForumUser(  firstName: firstName ?? _firstName,
-  lastName: lastName ?? _lastName,
-  imageUrl: imageUrl ?? _imageUrl,
-);
+
+  ForumUser copyWith({
+    String? firstName,
+    String? lastName,
+    String? imageUrl,
+  }) =>
+      ForumUser(
+        firstName: firstName ?? _firstName,
+        lastName: lastName ?? _lastName,
+        imageUrl: imageUrl ?? _imageUrl,
+      );
+
   String? get firstName => _firstName;
+
   String? get lastName => _lastName;
+
   String? get imageUrl => _imageUrl;
 
   Map<String, dynamic> toJson() {
@@ -175,22 +205,22 @@ ForumUser copyWith({  String? firstName,
     map['imageUrl'] = _imageUrl;
     return map;
   }
-
 }
 
 class ForumComments {
   ForumComments({
-      String? forumCommentId, 
-      String? forumId, 
-      String? userId, 
-      String? comment, 
-      String? createdAt,}){
+    String? forumCommentId,
+    String? forumId,
+    String? userId,
+    String? comment,
+    String? createdAt,
+  }) {
     _forumCommentId = forumCommentId;
     _forumId = forumId;
     _userId = userId;
     _comment = comment;
     _createdAt = createdAt;
-}
+  }
 
   ForumComments.fromJson(dynamic json) {
     _forumCommentId = json['forumCommentId'];
@@ -199,26 +229,36 @@ class ForumComments {
     _comment = json['comment'];
     _createdAt = json['createdAt'];
   }
+
   String? _forumCommentId;
   String? _forumId;
   String? _userId;
   String? _comment;
   String? _createdAt;
-ForumComments copyWith({  String? forumCommentId,
-  String? forumId,
-  String? userId,
-  String? comment,
-  String? createdAt,
-}) => ForumComments(  forumCommentId: forumCommentId ?? _forumCommentId,
-  forumId: forumId ?? _forumId,
-  userId: userId ?? _userId,
-  comment: comment ?? _comment,
-  createdAt: createdAt ?? _createdAt,
-);
+
+  ForumComments copyWith({
+    String? forumCommentId,
+    String? forumId,
+    String? userId,
+    String? comment,
+    String? createdAt,
+  }) =>
+      ForumComments(
+        forumCommentId: forumCommentId ?? _forumCommentId,
+        forumId: forumId ?? _forumId,
+        userId: userId ?? _userId,
+        comment: comment ?? _comment,
+        createdAt: createdAt ?? _createdAt,
+      );
+
   String? get forumCommentId => _forumCommentId;
+
   String? get forumId => _forumId;
+
   String? get userId => _userId;
+
   String? get comment => _comment;
+
   String? get createdAt => _createdAt;
 
   Map<String, dynamic> toJson() {
@@ -230,29 +270,36 @@ ForumComments copyWith({  String? forumCommentId,
     map['createdAt'] = _createdAt;
     return map;
   }
-
 }
 
 class ForumLikes {
   ForumLikes({
-      String? forumId, 
-      String? userId,}){
+    String? forumId,
+    String? userId,
+  }) {
     _forumId = forumId;
     _userId = userId;
-}
+  }
 
   ForumLikes.fromJson(dynamic json) {
     _forumId = json['forumId'];
     _userId = json['userId'];
   }
+
   String? _forumId;
   String? _userId;
-ForumLikes copyWith({  String? forumId,
-  String? userId,
-}) => ForumLikes(  forumId: forumId ?? _forumId,
-  userId: userId ?? _userId,
-);
+
+  ForumLikes copyWith({
+    String? forumId,
+    String? userId,
+  }) =>
+      ForumLikes(
+        forumId: forumId ?? _forumId,
+        userId: userId ?? _userId,
+      );
+
   String? get forumId => _forumId;
+
   String? get userId => _userId;
 
   Map<String, dynamic> toJson() {
@@ -261,5 +308,4 @@ ForumLikes copyWith({  String? forumId,
     map['userId'] = _userId;
     return map;
   }
-
 }

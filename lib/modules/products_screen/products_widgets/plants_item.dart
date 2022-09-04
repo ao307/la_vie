@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:la_vie/modules/products_screen/products_widgets/products_counter.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
-import '../../../models/plants_model.dart';
 import '../../../models/products_model.dart';
 import '../../../shared/themes/colors.dart';
 import '../../auth_screens/auth_widgets/auth_button.dart';
