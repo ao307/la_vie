@@ -15,3 +15,13 @@ class GetProductsDataErrorState extends ProductsStates {
   final String onError;
   GetProductsDataErrorState(this.onError);
 }
+
+// TODO: get Blogs data
+class GetBlogsLoadingState extends ProductsStates {}
+
+class GetBlogsSuccessState extends ProductsStates {}
+
+class GetBlogsErrorState extends ProductsStates {
+  final String onError;
+  GetBlogsErrorState(this.onError);
+}

@@ -8,6 +8,7 @@ import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/cubit/products_cubit/products_states.dart';
 
 import '../../../models/add_to_cart_model.dart';
+import '../../../models/blogs_model.dart';
 import '../../../modules/products_screen/products_body/all_body.dart';
 import '../../../modules/products_screen/products_body/plants_body.dart';
 import '../../../modules/products_screen/products_body/seeds_body.dart';
@@ -38,6 +39,26 @@ class ProductsCubit extends Cubit<ProductsStates> {
   void changeIndexOfTap(int index) {
     indexOfProductTap = index;
     emit(AnyState());
+  }
+
+  // TODO: Blogs Functions
+  BlogsModel? blogsModel;
+
+  Future<void> getBlogs() async {
+    emit(GetBlogsLoadingState());
+    await DioHelper.getData(
+      url: blogsEP,
+      token: accessTokenConst,
+    ).then((value) async {
+      blogsModel = BlogsModel.fromJson(value.data);
+      emit(GetBlogsSuccessState());
+    }).catchError((onError) {
+      if (kDebugMode) {
+        showToast(msg: 'error on blogs');
+        printFullText(onError.toString());
+      }
+      emit(GetBlogsErrorState(onError.toString()));
+    });
   }
 
   ProductsModel? productsModel;

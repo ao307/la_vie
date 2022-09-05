@@ -11,6 +11,7 @@ import 'package:la_vie/shared/components/widgets.dart';
 import '../../shared/components/tap_bar_reuse.dart';
 import '../../shared/cubit/products_cubit/products_cubit.dart';
 import '../../shared/cubit/products_cubit/products_states.dart';
+import '../blog_screen/blog_screen.dart';
 import '../cart_screen/cart_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -37,8 +38,7 @@ class ProductsScreen extends StatelessWidget {
                 ),
               );
             } else if (snapshot.hasError ||
-                state is GetProductsDataErrorState)
-            {
+                state is GetProductsDataErrorState) {
               return ErrorPage(
                 appBar: AppBar(
                   centerTitle: true,
@@ -76,7 +76,8 @@ class ProductsScreen extends StatelessWidget {
                         FloatingActionButton(
                           heroTag: "productScreen",
                           onPressed: () {
-                            navigateTo(context: context, widget: const MyCartScreen());
+                            navigateTo(
+                                context: context, widget: const MyCartScreen(),);
                           },
                           mini: true,
                           child: const FaIcon(
@@ -98,6 +99,17 @@ class ProductsScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                tooltip: 'blogsGo',
+                child: const Icon(
+                  Icons.question_mark_outlined,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                onPressed: () {
+                  navigateTo(context: context, widget: const BlogsScreen());
+                },
               ),
             );
           },

@@ -61,11 +61,9 @@ class NotificationScreen extends StatelessWidget {
                         );
                       },
                     )
-                  : const Center(
-                      child: EmptyWidget(
-                        subTitle: "no notification yet.",
-                      ),
-                    ),
+                  : const EmptyWidget(
+                    subTitle: "no notification yet.",
+                  ),
             );
           },
         );
