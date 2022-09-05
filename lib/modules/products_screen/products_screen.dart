@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:la_vie/modules/products_screen/products_widgets/search_text_form.dart';
+import 'package:la_vie/modules/products_screen/search_product_screen/search_product_screen.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
@@ -66,8 +67,11 @@ class ProductsScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: SearchTextFormField(
-                            textController: TextEditingController(),
                             hintText: 'search',
+                            readOnly: true,
+                            onTap: (){
+                              navigateTo(context: context, widget: const SearchProductsScreen());
+                            },
                           ),
                         ),
                         const SizedBox(

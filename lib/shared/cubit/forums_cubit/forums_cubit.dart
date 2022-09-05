@@ -208,6 +208,26 @@ class ForumsCubit extends Cubit<ForumsStates> {
     await getMyForumsData();
   }
 
+  List<ForumData> filterForumsList = [];
+  String? filterForumValue = "";
+
+  void filterForums(String value) {
+    filterForumValue = value;
+    if (value.isNotEmpty) {
+      filterForumsList = allForumsModel!.data!
+          .where(
+            (o) => "${o.user!.firstName!} ${o.user!.lastName!}".contains(value),
+          )
+          .toList();
+      filterForumsList.isEmpty
+          ? filterForumValue = "not found"
+          : filterForumValue = value;
+    } else {
+      filterForumsList.clear();
+    }
+    emit(AnyState());
+  }
+
   void clearForumsCubit() {
     allForumsModel = null;
     myForumsModel = null;
@@ -215,6 +235,7 @@ class ForumsCubit extends Cubit<ForumsStates> {
     titleTextEditingController.clear();
     descriptionTextEditingController.clear();
     commentTextEditingController.clear();
+    filterForumsList.clear();
     //allForumsIsLikeByMe.clear();
     //myForumsIsLikeByMe.clear();
   }

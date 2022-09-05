@@ -216,6 +216,48 @@ class ProductsCubit extends Cubit<ProductsStates> {
     listOfDataCart.removeAt(index);
     emit(AnyState());
   }
+
+  List<ProductData> filterProductsList = [];
+  String? filterProductsValue = "";
+
+  void filterProducts(String value) {
+    filterProductsValue = value;
+    if (value.isNotEmpty) {
+      filterProductsList = productsModel!.data!
+          .where(
+            (o) => "${o.name}".contains(value),
+          )
+          .toList();
+      allFilterCount.clear();
+      for (final ele in filterProductsList) {
+        allFilterCount.add(0);
+      }
+      filterProductsList.isEmpty
+          ? filterProductsValue = "not found"
+          : filterProductsValue = value;
+    } else {
+      filterProductsList.clear();
+      allFilterCount.clear();
+    }
+    emit(AnyState());
+  }
+
+  // TODO: functions of number of AllFilter counter
+  List<int> allFilterCount = [];
+
+  void addAllFilterFun(int index) {
+    if (allFilterCount[index] < 9) {
+      allFilterCount[index]++;
+    }
+    emit(AnyState());
+  }
+
+  void minusAllFilterFun(int index) {
+    if (allFilterCount[index] > 0) {
+      allFilterCount[index]--;
+    }
+    emit(AnyState());
+  }
 // Future<void> getLocalCart() async {
 //   if (await AppBox.box.get(addToCartBox) != null) {
 //     listOfDataCart = await AppBox.box.get(addToCartBox);

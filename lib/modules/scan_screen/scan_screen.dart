@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import '../../shared/cubit/products_cubit/products_cubit.dart';
-import '../../shared/cubit/products_cubit/products_states.dart';
+import '../../shared/cubit/scan_cubit/scan_cubit.dart';
+import '../../shared/cubit/scan_cubit/scan_states.dart';
 
 // ignore: must_be_immutable
 class ScanScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class ScanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductsCubit, ProductsStates>(
+    return BlocConsumer<ScanCubit, ScanStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -28,7 +28,6 @@ class ScanScreen extends StatelessWidget {
                   if (barcode.rawValue == null) {
                     debugPrint('Failed to scan Barcode');
                   } else {
-                    final String code = barcode.rawValue!;
                     showToast(msg: 'Barcode found');
                   }
                 },
