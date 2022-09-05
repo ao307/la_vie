@@ -5,12 +5,20 @@ import 'package:la_vie/shared/components/reuse_functions.dart';
 import '../../../shared/themes/colors.dart';
 
 class SearchTextFormField extends StatelessWidget {
-  final TextEditingController textController;
+  final TextEditingController? textController;
   final String hintText;
+  final GestureTapCallback? onTap;
+  final bool? readOnly;
+  final ValueChanged<String>? onChanged;
 
-  const SearchTextFormField(
-      {required this.textController, required this.hintText, Key? key,})
-      : super(key: key);
+  const SearchTextFormField({
+    this.textController,
+    required this.hintText,
+    this.onTap,
+    this.onChanged,
+    this.readOnly = false,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +34,9 @@ class SearchTextFormField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: textController,
-        onChanged: (value) {
-          //Do something wi
-        },
+        onTap: onTap,
+        readOnly: readOnly!,
+        onChanged: onChanged,
         decoration: InputDecoration(
           prefixIcon: const Icon(
             Icons.search,
@@ -38,11 +46,15 @@ class SearchTextFormField extends StatelessWidget {
           hintText: hintText.tr().toCapitalized(),
           hintStyle: const TextStyle(color: MyColors.cTextSubtitleLight),
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
           enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+          ),
+          disabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),

@@ -1,14 +1,16 @@
 class BlogsModel {
   BlogsModel({
-      this.type, 
-      this.message, 
-      this.data,});
+    this.type,
+    this.message,
+    this.data,
+  });
 
   BlogsModel.fromJson(dynamic json) {
     type = json['type'];
     message = json['message'];
     data = json['data'] != null ? BlogsData.fromJson(json['data']) : null;
   }
+
   String? type;
   String? message;
   BlogsData? data;
@@ -22,14 +24,14 @@ class BlogsModel {
     }
     return map;
   }
-
 }
 
 class BlogsData {
   BlogsData({
-      this.plants, 
-      this.seeds, 
-      this.tools,});
+    this.plants,
+    this.seeds,
+    this.tools,
+  });
 
   BlogsData.fromJson(dynamic json) {
     if (json['plants'] != null) {
@@ -51,6 +53,7 @@ class BlogsData {
       });
     }
   }
+
   List<BlogsPlants>? plants;
   List<BlogsSeeds>? seeds;
   List<BlogsTools>? tools;
@@ -68,15 +71,15 @@ class BlogsData {
     }
     return map;
   }
-
 }
 
 class BlogsTools {
   BlogsTools({
-      this.toolId, 
-      this.name, 
-      this.description, 
-      this.imageUrl,});
+    this.toolId,
+    this.name,
+    this.description,
+    this.imageUrl,
+  });
 
   BlogsTools.fromJson(dynamic json) {
     toolId = json['toolId'];
@@ -84,6 +87,7 @@ class BlogsTools {
     description = json['description'];
     imageUrl = json['imageUrl'];
   }
+
   String? toolId;
   String? name;
   String? description;
@@ -97,15 +101,15 @@ class BlogsTools {
     map['imageUrl'] = imageUrl;
     return map;
   }
-
 }
 
 class BlogsSeeds {
   BlogsSeeds({
-      this.seedId, 
-      this.name, 
-      this.description, 
-      this.imageUrl,});
+    this.seedId,
+    this.name,
+    this.description,
+    this.imageUrl,
+  });
 
   BlogsSeeds.fromJson(dynamic json) {
     seedId = json['seedId'];
@@ -113,6 +117,7 @@ class BlogsSeeds {
     description = json['description'];
     imageUrl = json['imageUrl'];
   }
+
   String? seedId;
   String? name;
   String? description;
@@ -126,18 +131,18 @@ class BlogsSeeds {
     map['imageUrl'] = imageUrl;
     return map;
   }
-
 }
 
 class BlogsPlants {
   BlogsPlants({
-      this.plantId, 
-      this.name, 
-      this.description, 
-      this.imageUrl, 
-      this.waterCapacity, 
-      this.sunLight, 
-      this.temperature,});
+    this.plantId,
+    this.name,
+    this.description,
+    this.imageUrl,
+    this.waterCapacity,
+    this.sunLight,
+    this.temperature,
+  });
 
   BlogsPlants.fromJson(dynamic json) {
     plantId = json['plantId'];
@@ -148,6 +153,7 @@ class BlogsPlants {
     sunLight = json['sunLight'];
     temperature = json['temperature'];
   }
+
   String? plantId;
   String? name;
   String? description;
@@ -167,5 +173,4 @@ class BlogsPlants {
     map['temperature'] = temperature;
     return map;
   }
-
 }

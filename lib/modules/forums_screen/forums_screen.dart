@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:la_vie/modules/forums_screen/search_screen/search_forums_screen.dart';
 import 'package:la_vie/modules/products_screen/products_widgets/search_text_form.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
@@ -29,8 +30,14 @@ class ForumsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: paddingMedium),
                 child: SearchTextFormField(
-                  textController: TextEditingController(),
                   hintText: 'search',
+                  readOnly: true,
+                  onTap: () {
+                    navigateTo(
+                      context: context,
+                      widget: const SearchForumsScreen(),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: paddingLarge),

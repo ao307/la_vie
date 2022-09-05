@@ -4,6 +4,7 @@ class ProductsInitialState extends ProductsStates {}
 
 // TODO: Any State: for simple states
 class AnyState extends ProductsStates {}
+
 class GetCartSuccess extends ProductsStates {}
 
 // TODO: get Products data
@@ -13,6 +14,7 @@ class GetProductsDataSuccessState extends ProductsStates {}
 
 class GetProductsDataErrorState extends ProductsStates {
   final String onError;
+
   GetProductsDataErrorState(this.onError);
 }
 
@@ -23,5 +25,6 @@ class GetBlogsSuccessState extends ProductsStates {}
 
 class GetBlogsErrorState extends ProductsStates {
   final String onError;
+
   GetBlogsErrorState(this.onError);
 }
