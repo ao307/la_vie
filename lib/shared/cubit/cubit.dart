@@ -18,7 +18,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<Widget> screens = [
     const ForumsScreen(),
-    const ScanScreen(),
+    ScanScreen(),
     const NotificationScreen(),
     const ProfileScreen(),
   ];

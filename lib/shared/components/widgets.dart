@@ -79,34 +79,36 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          ImagesInAssets.emptyFileImage,
-          width: screenW(context) * .5,
-        ),
-        const SizedBox(height: paddingSmall),
-        Text(
-          '${title ?? 'empty'}!'.tr().toCapitalized(),
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: textSizeLarge,
-            fontWeight: FontWeight.bold,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            ImagesInAssets.emptyFileImage,
+            width: screenW(context) * .5,
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal:paddingMedium),
-          child: Text(
-            (subTitle ?? "create one and go on.").tr().toCapitalized(),
+          const SizedBox(height: paddingSmall),
+          Text(
+            '${title ?? 'empty'}!'.tr().toCapitalized(),
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              color: MyColors.cTextSubtitleLight.withOpacity(1),
+            style: const TextStyle(
+              fontSize: textSizeLarge,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:paddingMedium),
+            child: Text(
+              (subTitle ?? "create one and go on.").tr().toCapitalized(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: MyColors.cTextSubtitleLight.withOpacity(1),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
