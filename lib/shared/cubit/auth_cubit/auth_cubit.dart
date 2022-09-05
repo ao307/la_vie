@@ -10,6 +10,7 @@ import 'package:la_vie/shared/cubit/profile_cubit/profile_cubit.dart';
 
 import '../../../models/login_model.dart';
 import '../../api/end_points.dart';
+import '../../api/google_auth.dart';
 import '../../api/local/app_box.dart';
 import '../../api/remote/dio_helper.dart';
 
@@ -102,6 +103,7 @@ class AuthCubit extends Cubit<AuthStates> {
     });
   }
 
+  // TODO: function to save tokens and user id after login
   Future<void> boxSaveLogin() async {
     accessTokenConst = loginModel!.data!.accessToken;
     refreshTokenConst = loginModel!.data!.refreshToken;
@@ -132,5 +134,38 @@ class AuthCubit extends Cubit<AuthStates> {
     // ForumsCubit
     ForumsCubit.get(context).clearForumsCubit();
     emit(AnyState());
+  }
+
+  Future<void> googleLoginFun() async {
+    await GoogleSignInApi.login().then((value) async {
+      // to get first and last name
+      final fullName = value!.displayName;
+      final names = fullName!.split(' ');
+      final firstName = names[0];
+      final lastName = names[1];
+      emit(LoginLoadingState());
+      await DioHelper.postData(
+        endPoint: authGoogleEP,
+        data: {
+          "id": value.id,
+          "email": value.email,
+          "firstName": firstName,
+          "lastName": lastName,
+          "picture": "${value.photoUrl}"
+        },
+      ).then((value) async {
+        loginModel = LoginModel.fromJson(value.data);
+        await boxSaveLogin();
+        emit(LoginSuccessState());
+      }).catchError((onError) {
+        if (onError.toString().contains('Http status error [400]')) {
+          showToast(msg: 'incorrect email or password');
+        }
+        emit(LoginErrorState(onError.toString()));
+      });
+    }).catchError((onError) {
+      print( onError.toString());
+      emit(LoginErrorState(onError.toString()));
+    });
   }
 }

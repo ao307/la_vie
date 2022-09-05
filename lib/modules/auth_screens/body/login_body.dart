@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:la_vie/modules/auth_screens/auth_widgets/auth_button.dart';
 import 'package:la_vie/modules/auth_screens/auth_widgets/auth_text_form_field.dart';
 import 'package:la_vie/modules/auth_screens/auth_widgets/ritch_text_button_.dart';
+import 'package:la_vie/shared/api/google_auth.dart';
 import 'package:la_vie/shared/components/constants.dart';
-import 'package:la_vie/shared/components/google_auth.dart';
 import 'package:la_vie/shared/components/image_assets.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:la_vie/shared/themes/colors.dart';
@@ -120,7 +120,7 @@ class LoginBody extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        GoogleSignInApi.login();
+                        authCubit.googleLoginFun();
                       },
                       icon: Image.asset(
                         ImagesInAssets.googleImage,
