@@ -1,4 +1,4 @@
-# easy_shop
+# la vie
 
 A new Flutter project.
 
