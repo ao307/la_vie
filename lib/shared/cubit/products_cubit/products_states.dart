@@ -28,3 +28,14 @@ class GetBlogsErrorState extends ProductsStates {
 
   GetBlogsErrorState(this.onError);
 }
+
+// TODO: Buy data
+class BuyLoadingState extends ProductsStates {}
+
+class BuySuccessState extends ProductsStates {}
+
+class BuyErrorState extends ProductsStates {
+  final String onError;
+
+  BuyErrorState(this.onError);
+}

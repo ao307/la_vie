@@ -187,14 +187,37 @@ class ProductsCubit extends Cubit<ProductsStates> {
   int totalCart = 0;
 
   Future<void> addToCart(DataCard data) async {
+    await buyProduct(data.productId!, data.cartCount!);
     listOfDataCart.add(data);
     cartCount.clear();
     for (final ele in listOfDataCart) {
       cartCount.add(ele.cartCount!);
     }
     await AppBox.box.put(addToCartBox, listOfDataCart.toString());
-    showToast(msg: 'added successfully');
+    showToast(msg: 'added to card successfully');
     emit(GetCartSuccess());
+  }
+
+  Future<void> buyProduct(String id, int quantity) async {
+    emit(BuyLoadingState());
+    await DioHelper.postData(
+      endPoint: buyProductEP,
+      token: accessTokenConst,
+      data: {
+        "products": [
+          {"productId": id, "quantity": quantity}
+        ]
+      },
+    ).then((value) async {
+      showToast(msg: value.data['message']);
+      emit(BuySuccessState());
+    }).catchError((onError) {
+      if (kDebugMode) {
+        showToast(msg: 'error on buy');
+        printFullText(onError.toString());
+      }
+      emit(BuyErrorState(onError.toString()));
+    });
   }
 
   void addDataCartFun(int index) {

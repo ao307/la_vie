@@ -4,9 +4,11 @@ import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 
 class ImagesAndProfileImage extends StatelessWidget {
-  const ImagesAndProfileImage(
-      {Key? key, required this.profileImage, required this.profileName,})
-      : super(key: key);
+  const ImagesAndProfileImage({
+    Key? key,
+    required this.profileImage,
+    required this.profileName,
+  }) : super(key: key);
   final String? profileImage;
   final String? profileName;
 
@@ -20,7 +22,7 @@ class ImagesAndProfileImage extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: CachedNetworkImageProvider(
-                profileImage!.isNotEmpty?profileImage!:errorProfileImage,
+                profileImage!.isNotEmpty ? profileImage! : errorProfileImage,
               ),
             ),
           ),
@@ -34,9 +36,9 @@ class ImagesAndProfileImage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 60,
+                radius: 80,
                 backgroundImage: CachedNetworkImageProvider(
-                  profileImage!.isNotEmpty?profileImage!:errorProfileImage,
+                  profileImage!.isNotEmpty ? profileImage! : errorProfileImage,
                 ),
               ),
               Text(

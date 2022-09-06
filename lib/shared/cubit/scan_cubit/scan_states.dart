@@ -14,3 +14,13 @@ class  ScanDataErrorState extends ScanStates {
   final String onError;
    ScanDataErrorState(this.onError);
 }
+
+// TODO: get home data
+class  GetScanProductLoadingState extends ScanStates {}
+
+class  GetScanProductSuccessState extends ScanStates {}
+
+class  GetScanProductErrorState extends ScanStates {
+  final String onError;
+  GetScanProductErrorState(this.onError);
+}

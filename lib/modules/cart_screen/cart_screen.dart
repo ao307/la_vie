@@ -45,40 +45,12 @@ class MyCartScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
+                    const Padding(
+                      padding: EdgeInsets.symmetric(
                         horizontal: paddingLarge,
                         vertical: paddingLarge * 2,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'total'.tr().toCapitalized(),
-                                style: const TextStyle(
-                                  fontSize: textSizeMedium,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                '300 EGP'.tr(),
-                                style: const TextStyle(
-                                  fontSize: textSizeMedium,
-                                  color: MyColors.cPrimary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: paddingLarge,
-                          ),
-                          const AuthButton(text: 'checkout')
-                        ],
-                      ),
+                      child: AuthButton(text: 'checkout'),
                     )
                   ],
                 )
