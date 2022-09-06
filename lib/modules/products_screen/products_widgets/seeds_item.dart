@@ -109,7 +109,7 @@ class SeedsGridItem extends StatelessWidget {
                         : () {
                             showToast(msg: 'select count');
                           },
-                    text: 'add to cart',
+                    text: 'buy',
                     height: 40,
                   ),
                 ],
