@@ -45,6 +45,20 @@ class DioHelper {
     return dio!.post(endPoint, queryParameters: query, data: data,);
   }
 
+  static Future<Response> patchData({
+    required String endPoint,
+    Map<String, dynamic>? query,
+    required Map<String, dynamic>? data,
+    String lang = 'en',
+    String? token = 'null',
+  }) async {
+    dio!.options.headers = {
+      'lang': lang,
+      'Authorization': "Bearer $token",
+      'Content-Type': 'application/json'
+    };
+    return dio!.patch(endPoint, queryParameters: query, data: data,);
+  }
   static Future<Response> putData({
     required String endPoint,
     Map<String, dynamic>? query,

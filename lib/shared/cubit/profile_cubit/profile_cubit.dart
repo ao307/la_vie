@@ -32,4 +32,40 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(GetProfileDataErrorState(onError.toString()));
     });
   }
+
+  Future<void> updateProfileName(String firstName, String lastName) async {
+    emit(GetProfileDataLoadingState());
+    await DioHelper.patchData(
+      endPoint: currentUserDataEP,
+      token: accessTokenConst,
+      data: {"firstName": firstName, "lastName": lastName},
+    ).then((value) async {
+      emit(GetProfileDataSuccessState());
+    }).catchError((onError) {
+      if (kDebugMode) {
+        showToast(msg: 'error on get updateProfileName');
+        printFullText(onError.toString());
+      }
+      emit(GetProfileDataErrorState(onError.toString()));
+    });
+  }
+
+  Future<void> updateProfileEmail(String email) async {
+    emit(UpdateProfileDataLoadingState());
+    await DioHelper.patchData(
+      endPoint: currentUserDataEP,
+      token: accessTokenConst,
+      data: {
+        "email": email,
+      },
+    ).then((value) async {
+      emit(UpdateProfileDataSuccessState());
+    }).catchError((onError) {
+      if (kDebugMode) {
+        showToast(msg: 'error on get updateProfileName');
+        printFullText(onError.toString());
+      }
+      emit(UpdateProfileDataErrorState(onError.toString()));
+    });
+  }
 }

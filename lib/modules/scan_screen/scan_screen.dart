@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:la_vie/modules/blog_screen/blog_screen.dart';
+import 'package:la_vie/modules/product_scan_screen/scan_product_screen.dart';
 import 'package:la_vie/shared/components/constants.dart';
 import 'package:la_vie/shared/components/reuse_functions.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -13,8 +15,18 @@ class ScanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScanCubit scanCubit = ScanCubit.get(context);
+    scanCubit.scanValue = "";
     return BlocConsumer<ScanCubit, ScanStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is GetScanProductSuccessState) {
+          navigateTo(
+              context: context,
+              widget: ScanProductScreen(
+                productData: scanCubit.productData,
+              ));
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           body: Stack(
@@ -26,9 +38,9 @@ class ScanScreen extends StatelessWidget {
                 ),
                 onDetect: (barcode, args) {
                   if (barcode.rawValue == null) {
-                    debugPrint('Failed to scan Barcode');
+                    showToast(msg: 'failed to scan Barcode');
                   } else {
-                    showToast(msg: 'Barcode found');
+                    scanCubit.getScanData(barcode.rawValue!);
                   }
                 },
               ),
