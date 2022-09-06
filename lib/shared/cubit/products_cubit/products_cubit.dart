@@ -209,7 +209,7 @@ class ProductsCubit extends Cubit<ProductsStates> {
         ]
       },
     ).then((value) async {
-      showToast(msg: value.data['message']);
+      showToast(msg: "${value.data['message']}.\n Check your email.");
       emit(BuySuccessState());
     }).catchError((onError) {
       if (kDebugMode) {
